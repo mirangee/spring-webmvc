@@ -23,7 +23,6 @@ public class ControllerV1 {
     // ==================== 요청 파라미터 읽기 (클라이언트가 보낸 데이터) ======================
     // 1. HttpServletRequest 객체 이용하기 -> 전통적 방식
 
-
     // URL이 같아도 전송 요청 방식에 따라 다르게 처리를 할 수 있다.
 //    @RequestMapping(value = "/food", method = RequestMethod.POST)
     // RequestMapping을 아래와 같이 간단하게 바꿀 수 있음.

@@ -94,7 +94,7 @@ public class ScoreController {
         return "redirect:/score/list";
     }
     
-    // 성적 삭제 요청
+    // 3. 성적 삭제 요청
     @PostMapping("/remove")
     public String remove(int stuNum) {
         System.out.println("/score/remove: POST!!");
@@ -104,7 +104,7 @@ public class ScoreController {
         return "redirect:/score/list";
     }
 
-    // 성적 상세 조회 요청
+    // 4. 성적 상세 조회 요청
     @GetMapping("/detail")
     public String detail(int stuNum, Model model){
         Score pickedOne = service.findStudent(stuNum);
