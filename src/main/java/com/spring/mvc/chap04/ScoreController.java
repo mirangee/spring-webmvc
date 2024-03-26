@@ -60,7 +60,7 @@ public class ScoreController {
         return "chap04/score-list";
     }
 
-    // 2. 학생의 입력된 성적정보를 데이터베이스에 저장
+    // 2. 학생의 입력된 성적정보를 데이터베이스에 저장(service 객체에 dto 넘기기)
     @PostMapping("/register")
     public String register(ScoreRequestDTO dto) {
         System.out.println("/score/register: POST!!");

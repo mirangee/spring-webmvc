@@ -23,7 +23,7 @@ public class ScoreService {
     // 성적 입력 중간 처리
     // 컨트롤러가 DTO를 넘김 -> 서비스는 값을 정제하고 Entity class로 변환 -> 레파지토리 계층에게 넘기자.
     public boolean insertScore(ScoreRequestDTO dto) {
-        Score score = new Score(dto);
+        Score score = new Score(dto); // Score 클래스가 Entity class임
         return repository.save(score);
     }
 }
