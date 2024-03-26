@@ -84,7 +84,54 @@
                     <button id="go-home" type="button">홈화면으로</button>
                 </label>
             </form>
+
+            <hr>
+            
+
+            <form action="/score/remove" method="post" name = "scoreForm">
+                <ul class="score-list">
+                    <li class="list-header">
+                        <div class="count">총 학생 수: ${sList.size()}명</div>
+                        <div class="sort-link-group">
+                            <div><a href="/score/list?sort=num">학번순</a></div>
+                            <div><a href="/score/list?sort=name">이름순</a></div>
+                            <div><a href="/score/list?sort=avg">평균순</a></div>
+                        </div>
+                    </li>
+                    <c:forEach var="s" items="${sList}">
+                        <li>
+                            # 학번: ${s.stuNum},
+                            이름: <a href="/score/detail?stuNum=${s.stuNum}">${s.maskingName}</a>,
+                            평균: ${s.average}점, 학점: ${s.grade}
+                            <a class="del-btn" href="${s.stuNum}">삭제</a>
+                        </li>
+                    </c:forEach>
+                    <input id = "stu-num" type="hidden" name="stuNum">
+                </ul>
+            </form>
         </section>
     </div>
+
+    <script>
+        // 삭제 버튼 클릭 이벤트 처리
+        const $ul = document.querySelector('.score-list');
+        $ul.addEventListener('click', e => {
+            if(!e.target.matches('.del-btn')) return; // 삭제 버튼이 아니면 이벤트 강제 종료
+            e.preventDefault(); // a 태그의 고유 기능 중지, a 태그 동작하면 안 됨.
+            if(confirm('정말로 삭제하시겠습니까?')) {
+                // a 태그에 미리 세팅한 href에 작성된 학생 번호를 얻어오자.
+                const stuNum = e.target.getAttribute('href');
+                
+                // hidden으로 숨겨진 input 태그의 value로 stuNum을 넣어주자.
+                document.getElementById('stu-num').setAttribute('value', stuNum);
+
+                // 폼 태그 제출
+                document.scoreForm.submit(); // 폼태그는 name으로 바로 지목 가능
+            } else {
+                return; // 삭제 취소
+            }
+
+        });
+    </script>
 </body>
 </html>
