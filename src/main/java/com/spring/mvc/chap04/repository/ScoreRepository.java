@@ -27,4 +27,7 @@ public interface ScoreRepository {
 
     // 성적 정보 개별 조회
     Score findOne(int stuNum);
+
+    // 성적 정보 업데이트
+    void update(Score score);
 }

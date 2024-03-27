@@ -29,10 +29,10 @@ class ScoreRepositoryImplTest {
         // true인 것을 단언한다.
         assertTrue(flag);
     }
-    
+
     @Test
     @DisplayName("tbl_score에 모든 학생 목록을 조회했을 때 학생의 수는 4명일 것이다.")
-    void findAllTest() {
+    void findAllTest(String sort) {
         // when
         List<Score> scoreList = repository.findAll(sort);
         System.out.println("scoreList = " + scoreList);
@@ -65,3 +65,4 @@ class ScoreRepositoryImplTest {
         assertNull(deleteScore);
     }
 }
+

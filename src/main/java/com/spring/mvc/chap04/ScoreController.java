@@ -107,10 +107,38 @@ public class ScoreController {
     // 4. 성적 상세 조회 요청
     @GetMapping("/detail")
     public String detail(int stuNum, Model model){
-        Score pickedOne = service.findStudent(stuNum);
-        model.addAttribute("stu", pickedOne);
+        retrieve(stuNum, model);
         // 상세보기이기 때문에 DTO가 아닌 Entity를 담아서 jsp로 보냅니다.
         return "chap04/score-detail";
+    }
+
+    // 5. 수정 페이지로 이동 요청
+    @GetMapping("/modify")
+    public String modify(int stuNum, Model model) {
+        System.out.println("/score/modify: GET!!!");
+        retrieve(stuNum, model);
+        return "chap04/score-modify";
+    }
+
+    // 수정 처리 요청
+    @PostMapping("/modify")
+    public String modify(ScoreRequestDTO dto, int stuNum) {
+        // 참고로, 모든 DTO 값이 다 채워지지 않아도 된다. 없으면 null 값으로 쓰면 됨.
+        
+        // 서비스, 레파지토리 계층과 연계하여 update 처리를 진행해 주세요.
+        // 수정이 완료된 후 사용자에게 응답할 페이지는 
+        // 최신 수정 내용이 반영된 detail 페이지입니다.
+
+
+        System.out.println("/score/modify: POST!!");
+        service.updateScore(stuNum, dto);
+
+        return "redirect:/score/detail?stuNum=" + stuNum;
+    }
+
+    private void retrieve(int stuNum, Model model) {
+        Score score = service.findOne(stuNum);
+        model.addAttribute("s", score);
     }
 }
 

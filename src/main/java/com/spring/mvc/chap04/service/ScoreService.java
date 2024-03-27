@@ -53,7 +53,18 @@ public class ScoreService {
        repository.delete(stuNum);
     }
 
-    public Score findStudent(int stuNum) {
+    public Score findOne(int stuNum) {
         return repository.findOne(stuNum);
     }
+
+    public void updateScore(int stuNum, ScoreRequestDTO dto) {
+        // 클라이언트가 수정할 데이터를 보냄
+        // 방법1. DB에 저장되어 있는 기존 데이터를 조회해서 수정을 진행
+        // 방법2. 새로운 Score 객체를 생성해서 점수를 세팅하고 총점, 평균, 학점을 계산(단, 현재 name이 null값이라는 건 인지하고 있어야 함)
+        Score changeScore = new Score(dto); // Score 클래스가 Entity class임
+        changeScore.setStuNum(stuNum); // 학생 번호 세팅
+        repository.update(changeScore); // entity를 보내줌
+    }
+
+
 }
