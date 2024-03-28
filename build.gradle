@@ -39,6 +39,11 @@ dependencies {
 	// 자바 프로그램과 MySQL을 연동해주는 커넥터
 	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
 
+	// mybatis 라이브러리 from Maven Repository 웹사이트
+	// Spring boot 3에서는 mybatis 3.x 버전으로 진행할 것!! 코끼리도 꼭 누를 것!
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+
+
 }
 
 tasks.named('test') {

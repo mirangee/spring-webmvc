@@ -28,7 +28,7 @@ public class BoardListResponseDTO {
         this.writer = board.getWriter();
     }
 
-    private String makePrettierDate(LocalDateTime regDate) {
+    public static String makePrettierDate(LocalDateTime regDate) {
         DateTimeFormatter ddf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return ddf.format(regDate);
     }

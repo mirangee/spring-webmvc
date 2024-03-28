@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+        <!--   카멜케이스와 스테이크케이스 자동 변환 설정 -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+
+        <!-- 조회된 결과가 없을 시에 null을 리턴해주는 설정 -->
+        <setting name="jdbcTypeForNull" value="NULL"/>
+    </settings>
+
+    <typeAliases>
+        <!-- BoardMapper.xml 파일에서 return 값이 있는 메서드는
+         'resultType'에 entity class 경로를 설정해줘야 한다.
+         경로를 길게 쓰면 오타 위험성과 번거로움이 있다.
+         다음 설정으로 entity 클래스에 별칭을 붙여 간단하게 대치할 수 있다.-->
+        <typeAlias type="com.spring.mvc.chap05.entity.Board" alias="board"/>
+    </typeAliases>
+
+    <!-- SQL을 적어놓은 XML 파일의 위치를 설정 -->
+    <mappers>
+        <mapper resource="mapper/BoardMapper.xml"/>
+    </mappers>
+
+</configuration>

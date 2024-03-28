@@ -1,0 +1,59 @@
+
+<!-- 이 파일이 mybatis의 mapper로 사용된다는 일종의 선언 (외울 필요 없음!) -->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace에는 이 파일과 연동될 인터페이스의 전체 경로(패키지명 포함 클래스명)를 적는다. -->
+<mapper namespace="com.spring.mvc.chap05.mapper.BoardMapper">
+
+    <!-- 구현하고자 하는 interface에 명세된 추상 메서드 별로 SQL을 작성   -->
+
+
+    <!-- SQL문의 DML(select, insert, update, delete)을 태그로 열고, id에는 추상 메서드 이름을 적는다  -->
+    <!-- SQL 작성할 때 값을 전달하는 방법
+        1. 추상 메서드를 보고 어떤 타입의 값이 전달되는지 확인
+        2. 값이 만약 객체라면, 객체 내부의 필드값을 꺼내기 위해 '#{}' 안에 필드명을 지목(get 안 붙인다)
+        3. 단일 값(자바 8개 기본타입(int,long,char 등) 및 String)이라면 매개변수명으로 지목 -->
+    <insert id="save"> <!-- 예전에는 parameterType에 어떤 객체가 넘어오는지까지 명시했었다.-->
+        INSERT INTO tbl_board
+        (title, content, writer)
+        VALUES (#{title}, #{content}, #{writer}) <!-- 이곳으로 Board 객체가 넘어오는데 필드명을 적으면 된다. -->
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM tbl_board
+        WHERE board_no = #{boardNO}
+    </delete>
+
+    <update id="updateViewCount">
+        UPDATE tbl_board
+        SET view_count = view_count + 1
+        WHERE board_no = #{boardNo}
+    </update>
+
+    <!-- select처럼 return 값이 있으면 'resultType'에 entity class 경로를 설정해주면 된다.
+        단, 데이터 베이스의 컬럼명과 엔터티의 필드명이 동일해야 한다.
+        (스네이크 케이스 -> 카멜 케이스 변환은 따로 설정을 통해 처리 가능하다)
+        예) board_no -> boardNO (o) board_num -> boardNO (x)
+   -->
+    <!-- 조회된 값이 여러 개면 알아서 List에 담아서 반환해 주므로
+         List 타입을 따로 언급할 필요가 없다.
+        예) List<Board>
+    -->
+    <select id="findAll" resultType = "board">
+        SELECT * FROM tbl_board
+        ORDER BY board_no DESC
+        LIMIT #{pageStart}, #{amount}
+        <!-- Page 클래스에 있는 getPageStart() 메서드를 get을 뺀 채로 호출한다. -->
+    </select>
+
+    <select id="findOne" resultType = "board">
+        SELECT * FROM tbl_board
+        WHERE board_no = #{boardNo}
+        ORDER BY board_no DESC
+    </select>
+
+
+</mapper>

@@ -51,6 +51,12 @@ public class BoardRepositoryImpl implements boardRepository {
     }
 
     @Override
+    public void updateViewCount(int bno) {
+        String sql = "UPDATE tbl_board SET view_count = view_count + 1 WHERE board_no = ?";
+        template.update(sql, bno);
+    }
+
+    @Override
     public void save(Board board) {
         String sql = "INSERT INTO tbl_board (title, content, writer) VALUES (?,?,?)";
         template.update(sql, board.getTitle(), board.getContent(), board.getWriter());
