@@ -4,16 +4,13 @@ package com.spring.mvc.chap05.controller;
 import com.spring.mvc.chap05.DTO.request.BoardWriteRequestDTO;
 import com.spring.mvc.chap05.DTO.response.BoardDetailResponseDTO;
 import com.spring.mvc.chap05.DTO.response.BoardListResponseDTO;
-import com.spring.mvc.chap05.common.Page;
 import com.spring.mvc.chap05.common.PageMaker;
+import com.spring.mvc.chap05.common.Search;
 import com.spring.mvc.chap05.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,19 +22,22 @@ public class BoardController {
 
     // 1. 목록 조회 요청 (/board/list : GET)
     @GetMapping("/list")
-    public String list(Model model, Page page) {
+    public String list(Model model, @ModelAttribute("s") Search page) { // page 정보도 처리 가능하며 검색 조건, 검색어를 받을 수 있는 Search 객체를 매개변수로 받음
         System.out.println("/board/list: GET!!!");
-        System.out.println("page =" + page);
-        List<BoardListResponseDTO> dtoList = service.getList(page);
+        System.out.println("Search =" + page);
+        List<BoardListResponseDTO> dtoList = service.getList(page); // search 객체가 넘어감
 
         // 페이징 버튼 알고리즘 적용 -> 사용자가 요청한 페이지 정보, 총 게시물 개수를 전달
         // 생성자에 의해 페이징 알고리즘 자동 호출
-        int totalCount = service.getCount();
-        PageMaker pageMaker = new PageMaker(page, totalCount);
+        int totalCount = service.getCount(page);
+        PageMaker pageMaker = new PageMaker(page, service.getCount(page));
 
         // model에 글 목록 뿐만 아니라 페이지 버튼 정보도 같이 담아서 전달하자.
         model.addAttribute("bList", dtoList);
         model.addAttribute("maker", pageMaker);
+
+        // 매서드의 파라미터값을 model 객체에 바로 추가하려면 @ModelAttribute로 바로 모델에 담을 수 있다.
+//        model.addAttribute("search", page);
         return "chap05/list";
     }
 
@@ -70,7 +70,7 @@ public class BoardController {
     // 5. 글 상세보기 요청 (/board/detail : GET)
     // chap05/detail
     @GetMapping("/detail/{bno}")
-    public String detail(@PathVariable("bno") int bno, Model model) { // URL 형태로 묻어오는 경우 변수 받기
+    public String detail(@PathVariable("bno") int bno, @ModelAttribute("s") Search search, Model model) { // URL 형태로 묻어오는 경우 변수 받기
         System.out.println("/board/detail: Get! " + bno);
         BoardDetailResponseDTO dto = service.getDetail(bno);
         model.addAttribute("b", dto);

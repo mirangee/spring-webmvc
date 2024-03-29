@@ -7,9 +7,28 @@
 
 <!-- namespace에는 이 파일과 연동될 인터페이스의 전체 경로(패키지명 포함 클래스명)를 적는다. -->
 <mapper namespace="com.spring.mvc.chap05.mapper.BoardMapper">
-
     <!-- 구현하고자 하는 interface에 명세된 추상 메서드 별로 SQL을 작성   -->
 
+    <sql id="search"> <!--이 sql을 지목할 수 있는 이름을 id로 지정-->
+        <!-- 동적 SQL 작성 -->
+        <if test="type=='title'"> <!--사용자가 제목으로 검색했다면-->
+            WHERE title LIKE CONCAT('%',#{keyword},'%')
+            <!-- 오라클 SQL의 경우, CONCAT이 2개까지만 가능하기에 '||'로 이어서 쓰면 된다-->
+        </if>
+        <if test="type=='content'"> <!--사용자가 내용으로 검색했다면-->
+            WHERE content LIKE CONCAT('%',#{keyword},'%')
+            <!-- 오라클 SQL의 경우, CONCAT이 2개까지만 가능하기에 '||'로 이어서 쓰면 된다-->
+        </if>
+        <if test="type=='writer'"> <!--사용자가 작성자로 검색했다면-->
+            WHERE writer LIKE CONCAT('%',#{keyword},'%')
+            <!-- 오라클 SQL의 경우, CONCAT이 2개까지만 가능하기에 '||'로 이어서 쓰면 된다-->
+        </if>
+        <if test="type=='tc'"> <!--사용자가 제목+내용으로 검색했다면-->
+            WHERE title LIKE CONCAT('%',#{keyword},'%')
+            OR content LIKE CONCAT('%',#{keyword},'%')
+            <!-- 오라클 SQL의 경우, CONCAT이 2개까지만 가능하기에 '||'로 이어서 쓰면 된다-->
+        </if>
+    </sql>
 
     <!-- SQL문의 DML(select, insert, update, delete)을 태그로 열고, id에는 추상 메서드 이름을 적는다.
          세미콜론(;) 찍지 말 것!! 에러 난다.
@@ -46,6 +65,7 @@
     -->
     <select id="findAll" resultType = "board">
         SELECT * FROM tbl_board
+        <include refid="search"/>
         ORDER BY board_no DESC
         LIMIT #{pageStart}, #{amount}
         <!-- Page 클래스에 있는 getPageStart() 메서드를 get을 뺀 채로 호출한다. -->
@@ -59,5 +79,6 @@
 
     <select id="getCount" resultType="int">
         SELECT COUNT(*) FROM tbl_board
+        <include refid="search"/>
     </select>
 </mapper>

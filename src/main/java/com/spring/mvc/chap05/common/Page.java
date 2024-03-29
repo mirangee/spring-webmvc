@@ -10,6 +10,7 @@ public class Page {
     private int pageNo; // 클라이언트가 보낸 페이지 번호
     private int amount; // 한 화면에 보여질 게시물 수
 
+
     // 사용자가 처음 게시판으로 진입할 때는 페이지 번호와 게시물 수가 오지 않기 때문에
     // 객체 생성 시 기본값을 설정
     public Page() {

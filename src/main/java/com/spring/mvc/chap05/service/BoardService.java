@@ -4,7 +4,7 @@ package com.spring.mvc.chap05.service;
 import com.spring.mvc.chap05.DTO.request.BoardWriteRequestDTO;
 import com.spring.mvc.chap05.DTO.response.BoardDetailResponseDTO;
 import com.spring.mvc.chap05.DTO.response.BoardListResponseDTO;
-import com.spring.mvc.chap05.common.Page;
+import com.spring.mvc.chap05.common.Search;
 import com.spring.mvc.chap05.entity.Board;
 
 
@@ -28,7 +28,7 @@ public class BoardService {
         mapper.save(board);
     }
 
-    public List<BoardListResponseDTO> getList(Page page) {
+    public List<BoardListResponseDTO> getList(Search page) {
         List<BoardListResponseDTO> dtoList = new ArrayList<>();
         List<Board> boardList = mapper.findAll(page);
         for (Board board : boardList) {
@@ -51,8 +51,8 @@ public class BoardService {
         mapper.delete(boardNo);
     }
 
-    public int getCount() {
-        return mapper.getCount();
+    public int getCount(Search page) {
+        return mapper.getCount(page);
 
     }
 }

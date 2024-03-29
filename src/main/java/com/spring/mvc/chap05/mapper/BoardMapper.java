@@ -1,6 +1,6 @@
 package com.spring.mvc.chap05.mapper;
 
-import com.spring.mvc.chap05.common.Page;
+import com.spring.mvc.chap05.common.Search;
 import com.spring.mvc.chap05.entity.Board;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,7 +13,7 @@ import java.util.List;
 // mybatis는 xml로 작성하므로 자바를 몰라도 쉽게 작성 가능하다.
 public interface BoardMapper {
     // 목록 조회
-    List<Board> findAll(Page page);
+    List<Board> findAll(Search page);
 
     // 상세 조회
     Board findOne(int boardNo);
@@ -28,5 +28,5 @@ public interface BoardMapper {
     void updateViewCount(int boardNo);
 
     // 총 게시물의 갯수 리턴
-    int getCount();
+    int getCount(Search page);
 }
