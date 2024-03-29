@@ -5,6 +5,7 @@ import com.spring.mvc.chap05.DTO.request.BoardWriteRequestDTO;
 import com.spring.mvc.chap05.DTO.response.BoardDetailResponseDTO;
 import com.spring.mvc.chap05.DTO.response.BoardListResponseDTO;
 import com.spring.mvc.chap05.common.Page;
+import com.spring.mvc.chap05.common.PageMaker;
 import com.spring.mvc.chap05.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,15 @@ public class BoardController {
         System.out.println("/board/list: GET!!!");
         System.out.println("page =" + page);
         List<BoardListResponseDTO> dtoList = service.getList(page);
+
+        // 페이징 버튼 알고리즘 적용 -> 사용자가 요청한 페이지 정보, 총 게시물 개수를 전달
+        // 생성자에 의해 페이징 알고리즘 자동 호출
+        int totalCount = service.getCount();
+        PageMaker pageMaker = new PageMaker(page, totalCount);
+
+        // model에 글 목록 뿐만 아니라 페이지 버튼 정보도 같이 담아서 전달하자.
         model.addAttribute("bList", dtoList);
+        model.addAttribute("maker", pageMaker);
         return "chap05/list";
     }
 
@@ -67,4 +76,6 @@ public class BoardController {
         model.addAttribute("b", dto);
         return "chap05/detail";
     }
+
+
 }

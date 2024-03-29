@@ -11,7 +11,9 @@
     <!-- 구현하고자 하는 interface에 명세된 추상 메서드 별로 SQL을 작성   -->
 
 
-    <!-- SQL문의 DML(select, insert, update, delete)을 태그로 열고, id에는 추상 메서드 이름을 적는다  -->
+    <!-- SQL문의 DML(select, insert, update, delete)을 태그로 열고, id에는 추상 메서드 이름을 적는다.
+         세미콜론(;) 찍지 말 것!! 에러 난다.
+     -->
     <!-- SQL 작성할 때 값을 전달하는 방법
         1. 추상 메서드를 보고 어떤 타입의 값이 전달되는지 확인
         2. 값이 만약 객체라면, 객체 내부의 필드값을 꺼내기 위해 '#{}' 안에 필드명을 지목(get 안 붙인다)
@@ -55,5 +57,7 @@
         ORDER BY board_no DESC
     </select>
 
-
+    <select id="getCount" resultType="int">
+        SELECT COUNT(*) FROM tbl_board
+    </select>
 </mapper>
