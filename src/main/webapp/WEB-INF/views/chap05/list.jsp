@@ -15,10 +15,10 @@
 </head>
 
 <body>
-
+    <%@ include file = "../include/header.jsp" %>
 
     <div id="wrap">
-        <%@ include file = "../include/header.jsp" %>
+
         <!--지시자 태그로 include file 끌어오기-->
 
         <div class="main-title-wrapper">

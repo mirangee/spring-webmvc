@@ -43,6 +43,8 @@ dependencies {
 	// Spring boot 3에서는 mybatis 3.x 버전으로 진행할 것!! 코끼리도 꼭 누를 것!
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 
+	// 입력값 검증 라이브러리
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
 
 tasks.named('test') {

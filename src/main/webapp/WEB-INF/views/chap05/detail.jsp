@@ -10,7 +10,9 @@
     <title>게시판 글쓰기</title>
 
 
-    <%@include file="../include/static-head.jsp" %>
+    <%@ include file = "../include/static-head.jsp" %>
+    <!--지시자 태그로 include file 끌어오기-->
+    <link rel="stylesheet" href="/assets/css/list.css">
 
     <style>
         .form-container {
@@ -173,7 +175,6 @@
                 <div class="card">
                     <div class="card-body">
 
-
                         <div class="row">
                             <div class="col-md-9">
                                 <div class="form-group">
@@ -201,7 +202,6 @@
                                 </div>
                             </div>
                         </div>
-
 
                     </div>
                 </div> <!-- end reply write -->
@@ -268,8 +268,155 @@
 
     </div>
 
+    <script>
+        const URL = '/api/v1/replies'; // 댓글과 관련된 요청 url을 전역변수화.
+        const bno = '${b.boardNo}'; // 게시글 번호를 전역변수화.
+
+        // 화면에 댓글 태그들을 렌더링하는 함수
+        function renderReplies(replies) {
+            let tag = '';
+            if (replies !== null && replies.length > 0) {
+
+                for (let reply of replies) {
+                    // 객체 디스트럭처링(구조분해할당)
+                    const {
+                        rno,
+                        writer,
+                        text,
+                        regDate
+                    } = reply;
+
+                    tag += `
+                        <div id='replyContent' class='card-body' data-replyId='\${rno}'>
+                            <div class='row user-block'>
+                                <span class='col-md-8'>
+                    `;
+
+                    tag += `<b>\${writer}</b>
+                            </span>
+                            <span class='col-md-4 text-right'><b>\${regDate}</b></span>
+                        </div><br>
+                        <div class='row'>
+                            <div class='col-md-9'>\${text}</div>
+                            <div class='col-md-3 text-right'>
+                    `;
+
+                    tag += `
+                        <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;
+                        <a id='replyDelBtn' class='btn btn-sm btn-outline-dark' href='#'>삭제</a>
+                    `;
+
+                    tag += `   </div>
+                            </div>
+                        </div>
+                    `;
+                } // END for
+            } else {
+                tag += "<div id='replyContent' class='card-body'>댓글이 아직 없습니다! ㅠㅠ</div>";
+            }
+
+            // 댓글 수 렌더링
+            document.getElementById('replyCnt').textContent = replies.length;
+            // 댓글 렌더링
+            // 반복문을 이용해서 문자열로 작성한 tag를 댓글 영역 div에 innerHTML로 그대로 삽입
+            document.getElementById('replyData').innerHTML = tag;
+        }
+
+        // 서버에 실시간으로 비동기통신을 해서 JSON을 받아오는 함수
+        function fetchGetReplies() {
+            // fetch 함수를 통해 비동기통신 진행할 때 GET요청은 요청에 관련한 객체를 따로 전달하지 않습니다.
+            // method를 get이라고 얘기하지 않고, 데이터 전달 시에는 URL에 포함시켜서 전달.
+            // 자바스크립트 문자열 안에 '달러와 중괄호'를 쓰면 el로 인식, 템플릿 리터럴 문자를 쓰고 싶으면 앞에 /를 넣어 주세요.
+            fetch(`\${URL}/\${bno}`) // GET 방식이므로 객체 따로 선언하지 않음
+                .then(res => res.json()) // 응답 객체에서 JSON 객체를 꺼냈고
+                .then(replyList => { //꺼낸 JSON 객체에서 replyList 꺼내 보기
+                    console.log(replyList);
+                    //서버로부터 전달 받은 댓글 목록들을 화면에 그려야 한다.
+                    // 기존에는 model에 담아서 jsp로 전달했고, jsp 쪽에서 el을 이용해서 화면에 뿌렸다.
+                    // 이제 서버는 그냥 데이터만 딸랑 던져주고 끝이다.
+                    // 화면 가공은 js에서 진행해야 한다.
+                    renderReplies(replyList);
+                })
+        }
 
 
+
+        const $addBtn = document.getElementById('replyAddBtn');
+
+        $addBtn.onclick = e => {
+
+            const $replyText = document.getElementById('newReplyText'); // 댓글 내용
+            const $replyWriter = document.getElementById('newReplyWriter'); // 댓글 작성자
+
+            // 공백이 제거된 값을 얻음.
+            const textVal = $replyText.value.trim();
+            const writerVal = $replyWriter.value.trim();
+
+            // 사용자 입력값 검증
+            if (textVal === '') {
+                alert('댓글 내용은 필수값입니다!!');
+                return;
+            } else if (writerVal === '') {
+                alert('댓글 작성자는 필수값입니다!!');
+                return;
+            } else if (writerVal.length < 2 || writerVal.length > 8) {
+                alert('댓글 작성자는 2글자에서 8글자 사이로 작성하세요!');
+                return;
+            }
+
+            // 서버로 보낼 데이터 준비. (js 객체)
+            const payload = {
+                text: textVal,
+                author: writerVal,
+                bno: bno
+            };
+
+            // 요청 방식 및 데이터를 전달할 정보 객체 만들기 (POST)
+            const requestInfo = {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(payload) // js 객체를 JSON으로 변환해서 body에 추가
+            }
+
+            // 서버에 POST 요청 보내기
+            fetch(URL, requestInfo)
+                // then(callbackFn) -> 비동기 통신의 결과를 확인하기 위해 then과 콜백함수 전달
+                // 콜백함수의 매개변수로 응답정보가 담긴 Response 객체가 전달되고,
+                // Response 객체에서 json 데이터를 꺼내고 싶으면 json(), 단순 텍스트라면 text().
+                .then(res => {
+                    console.log(res.status); // 서버에서 전달한 응답 상태 코드
+                    if (res.status === 200) {
+                        alert('댓글이 정상 등록되었습니다.');
+                        return res.text();
+                    } else {
+                        alert('입력값에 문제가 있습니다! 입력값을 다시 확인해 보세요!');
+                        return res.text();
+                    }
+                })
+                .then(data => {
+                    console.log('응답 성공! ', data);
+                    // 댓글 작성자 input과 댓글 내용 text를 지워주자.
+                    $replyText.value = '';
+                    $replyWriter.value = '';
+
+                    // 댓글 목록 비동기 요청이 들어가야 한다.
+                    // 따로 함수로 빼 주겠습니다.
+                    // (등록 이후 뿐만 아니라 게시글 상세보기에 처음 들어왔을 때도 호출되어야 하니까)
+                    fetchGetReplies();
+                });
+
+
+        }
+
+        // =================메인 실행부==================
+        // 즉시 실행함수를 통해 페이지가 로딩되면 함수가 자동호출되게 하자.
+        (() => {
+            // 댓글을 서버에서 불러오기
+            fetchGetReplies();
+        })();
+    </script>
 </body>
 
 </html>
