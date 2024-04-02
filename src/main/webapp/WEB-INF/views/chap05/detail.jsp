@@ -471,6 +471,32 @@
 
                 if (e.target.matches('#replyDelBtn')) {
                     // 삭제 로직 진행
+                    /*
+                        confirm함수 이용해서 한번 더 물어봐 주세요.
+
+                        URL: /api/v1/replies/rno: DELETE, 전달되는 JSON은 없습니다.
+                        headers랑 body는 작성할 필요가 없습니다.
+
+                        삭제 완료 후에는 1페이지 댓글 목록 요청이 들어가도록 처리.
+                    */
+
+                    if(!confirm('정말 삭제하시겠습니까?')) return;
+                    
+                    fetch(`\${URL}/\${rno}`,{
+                        method: 'DELETE'
+                    })
+                    .then(res => {
+                        if (res.status === 200) {
+                            alert('댓글이 삭제 되었습니다');
+                            fetchGetReplies(); // 삭제 완료 후 1페이지 댓글 목록 요청이 들어가게 처리
+                        } else {
+                            alert('오류가 발생했습니다. 관리자에게 문의하세요.');
+                            return;
+                        }
+                    });
+                    
+
+
                 } else if (e.target.matches('#replyModBtn')) {
                     // 수정 모드로 진입(모달)
 
