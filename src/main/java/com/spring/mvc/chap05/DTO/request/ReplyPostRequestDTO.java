@@ -1,4 +1,4 @@
-package com.spring.mvc.chap05.dto.request;
+package com.spring.mvc.chap05.DTO.request;
 
 import com.spring.mvc.chap05.entity.Reply;
 import jakarta.validation.constraints.NotBlank;
@@ -13,6 +13,7 @@ import lombok.*;
 @Builder
 public class ReplyPostRequestDTO {
 
+    // 검증 역할을 하는 validation 라이브러리 사용
     // NotNull: null만 안됨! 빈문자열은 됨!
     // NotBlank: null 안됨! 빈문자열도 안됨!
 
@@ -21,7 +22,7 @@ public class ReplyPostRequestDTO {
     private String text; // 댓글 내용
 
     @NotBlank
-    @Size(min = 2, max = 8)
+    @Size(min = 2, max = 8) // 최소 2글자, 8글자 넘어가면 error 발생
     private String author; // 댓글 작성자
 
     @NotNull

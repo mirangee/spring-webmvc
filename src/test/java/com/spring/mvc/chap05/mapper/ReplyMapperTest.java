@@ -56,7 +56,7 @@ class ReplyMapperTest {
         // given
         int boardNo = 77;
         // when
-        List<Reply> replyList = replyMapper.findAll(boardNo);
+        List<Reply> replyList = replyMapper.findAll(boardNo, page);
 
         // then
         assertEquals(9, replyList.size());

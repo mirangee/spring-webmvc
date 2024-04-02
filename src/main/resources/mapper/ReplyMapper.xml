@@ -13,7 +13,8 @@
 
     <update id="modify">
         UPDATE tbl_reply
-        SET reply_text = #{replyText}
+        SET reply_text = #{replyText},
+        update_date = CURRENT_TIMESTAMP
         WHERE reply_no = #{replyNo}
     </update>
 
@@ -27,10 +28,12 @@
         WHERE reply_no = #{replyNo}
     </select>
 
+    <!-- service에서 2개 이상의 매개변수가 전달되는 경우 설정한 별칭으로 호출한다.    -->
     <select id="findAll" resultType="reply">
         SELECT * FROM tbl_reply
-        WHERE board_no = #{boardNo}
+        WHERE board_no = #{bn}
         ORDER BY reply_no
+        LIMIT #{p.pageStart}, #{p.amount}
     </select>
 
     <select id="count" resultType="int">
