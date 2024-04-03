@@ -19,7 +19,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardController {
     private final BoardService service;
-    
 
     // 1. 목록 조회 요청 (/board/list : GET)
     @GetMapping("/list")

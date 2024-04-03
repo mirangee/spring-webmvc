@@ -13,18 +13,14 @@
         <!-- 프로필 사진 -->
         <div class="profile-box">
 
-            <c:if test="${login == null || login.profile == null}">
                 <img src="/assets/img/anonymous.jpg" alt="프사">
-            </c:if>
-
-            <c:if test="${login != null && login.profile != null}">
-                <img src="${login.profile}" alt="프사">
-            </c:if>
+            
         </div>
 
 
-        <h2 class="intro-text">
-            Welcome ${login == null ? '' : login.nickName}
+        <h2 class="intro-text"> 
+            Welcome ${sessionScope.login == null? '': login.name} 
+            <!-- session 객체의 login 데이터를 꺼내달라는 의미. scope를 쓰지 않으면 자동으로 model 객체, session 객체를 뒤져서 찾아온다.-->
         </h2>
         <a href="#" class="menu-open">
             <span class="menu-txt">MENU</span>
@@ -42,7 +38,7 @@
             <li><a href="/board/list">Board</a></li>
             <li><a href="#">Contact</a></li>
 
-            <c:if test="${empty login}">
+            <c:if test="${empty login}"> // el 문법임. login이 null이라면 ${login == null}
                 <li><a href="/members/sign-up">Sign Up</a></li>
                 <li><a href="/members/sign-in">Sign In</a></li>
             </c:if>

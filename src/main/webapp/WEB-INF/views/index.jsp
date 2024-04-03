@@ -7,7 +7,7 @@
 </head>
 <body>
 
-    <!-- <%
+    <%
         String userName = "방문자";
         
         // client가 쿠키 검사 
@@ -19,7 +19,7 @@
         }
     %>
 
-    <h1> <%= userName %>님, 안녕하세요!</h1> -->
-    <h1>안녕하세요.</h1>
+    <h1> <%= userName %>님, 안녕하세요!</h1>
+    
 </body>
 </html>
