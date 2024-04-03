@@ -271,7 +271,7 @@
       if (checkResultList.includes(false)) {
         alert('입력란을 다시 확인하세요!');
       } else {
-        $form.submit(); 
+        $form.submit(); // form action에 작성된 URL 대로 요청이 들어간다.
       }
     }
   </script>
