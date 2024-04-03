@@ -53,4 +53,7 @@ public class MemberService {
         return LoginResult.SUCCESS;
     }
 
+    public boolean checkDuplicateValue(String type, String keyword) {
+        return memberMapper.isDuplicate(type,keyword);
+    }
 }
