@@ -1,8 +1,8 @@
 package com.spring.mvc.chap01;
 
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 // 컨트롤러: 클라이언트의 요청을 받아서 처리 후 응답을 결정하는 역할
 @Controller // @Component로 해도 되지만 controller 역할을 할 것이므로 @Controller로 빈 등록한다.
@@ -60,5 +60,11 @@ public class ControllerV1 {
     public String food(FoodOrderDTO orderDTO){
         System.out.println("orderDTO = " + orderDTO);
         return null;
+    }
+
+    // 0. index 화면 이동 TEST
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/index";
     }
 }
