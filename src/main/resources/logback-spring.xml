@@ -38,7 +38,7 @@
     </root>
 
     <!-- log 레벨 설정 (org.springframework.web=debug)-->
-    <logger name="org.springframework.web" level="debug">
+    <logger name="org.springframework.web" level="info">
         <appender-ref ref="FILE" />
     </logger>
 
