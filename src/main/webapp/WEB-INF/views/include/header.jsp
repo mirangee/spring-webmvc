@@ -38,7 +38,7 @@
             <li><a href="/board/list">Board</a></li>
             <li><a href="#">Contact</a></li>
 
-            <c:if test="${empty login}"> // el 문법임. login이 null이라면 ${login == null}
+            <c:if test="${empty login}"> <!-- el 문법임. login이 null이라면 ${login == null}-->
                 <li><a href="/members/sign-up">Sign Up</a></li>
                 <li><a href="/members/sign-in">Sign In</a></li>
             </c:if>

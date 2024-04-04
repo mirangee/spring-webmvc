@@ -240,12 +240,14 @@
       const emailValue = $emailInput.value;
       if (emailValue.trim() === '') {
         $emailInput.style.borderColor = 'red';
-        document.getElementById('emailChk').innerHTML = '<b style="color: red;">[이메일 필수값입니다!]</b>';
+        document.getElementById('emailChk').innerHTML = '<b style="color: red;">[이메일은 필수값입니다!]</b>';
         checkResultList[4] = false;
+
       } else if (!emailPattern.test(emailValue)) {
         $emailInput.style.borderColor = 'red';
         document.getElementById('emailChk').innerHTML = '<b style="color: red;">[이메일 형식을 지켜주세요~]</b>';
         checkResultList[4] = false;
+
       } else {
         fetch('/members/check/email/' + emailValue)
           .then(res => res.json())
@@ -254,6 +256,7 @@
               $emailInput.style.borderColor = 'red';
               document.getElementById('emailChk').innerHTML = '<b style="color: red;">[이메일이 중복되었습니다.]</b>';
               checkResultList[4] = false;
+
             } else {
               $emailInput.style.borderColor = 'skyblue';
               document.getElementById('emailChk').innerHTML = '<b style="color: skyblue;">[사용가능한 이메일입니다.]</b>';
