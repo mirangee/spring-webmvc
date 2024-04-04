@@ -77,7 +77,7 @@ public class MemberService {
             // DTO 만들어서 객체로 전달
             memberMapper.saveAutoLogin(AutoLoginDTO.builder()
                     .sessionId(session.getId())
-                    .limitTime(LocalDateTime.now().plus(90))
+                    .limitTime(LocalDateTime.now().plusDays(90))
                     .account(dto.getAccount())
                     .build());
 
