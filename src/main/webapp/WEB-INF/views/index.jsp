@@ -14,7 +14,7 @@
         Cookie[] cookies = request.getCookies();
         for(Cookie c: cookies) {
             if (c.getName().equals("login")) {
-                userName = c.getValue;
+                userName = c.getValue();
             }
         }
     %>

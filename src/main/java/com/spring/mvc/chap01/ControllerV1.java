@@ -61,10 +61,4 @@ public class ControllerV1 {
         System.out.println("orderDTO = " + orderDTO);
         return null;
     }
-
-    // 0. index 화면 이동 TEST
-    @GetMapping("/")
-    public String index() {
-        return "redirect:/index";
-    }
 }

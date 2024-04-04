@@ -41,7 +41,7 @@ public class AfterLoginInterceptor implements HandlerInterceptor {
                     "</html>";
             w.write(htmlCode);
             w.flush();
-            response.sendRedirect("/board/list"); //index 화면으로 이동
+//            response.sendRedirect("/"); //index 화면으로 이동
             return false; // 컨트롤러로 들어가는 요청을 막음
         }
         return true; // 로그인 안 했으면 통과
