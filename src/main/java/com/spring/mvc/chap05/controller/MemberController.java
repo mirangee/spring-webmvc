@@ -58,8 +58,9 @@ public class MemberController {
     @PostMapping("/sign-in")
     public String signIn(LoginRequestDTO dto, RedirectAttributes ra, HttpServletResponse response, HttpServletRequest request) {
         log.info("/members/sign-in: POST!, dto: {}", dto);
-
-        LoginResult result = memberService.authenticate(dto);
+        
+        // 자동 로그인 서비스를 추가하기 위해 세션과 응답객체도 함께 전달
+        LoginResult result = memberService.authenticate(dto, request.getSession(), response);
         log.debug("result: {}", result);
 
         ra.addFlashAttribute("result", result); //리다이렉트에서 사용하는 객체

@@ -2169,3 +2169,367 @@ java.lang.IllegalStateException: Cannot call sendRedirect() after the response h
 [2024-04-04 15:16:44:27504] DEBUG 3836 --- [nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 [2024-04-04 15:16:44:27505] DEBUG 3836 --- [nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 [2024-04-04 15:16:44:27505] DEBUG 3836 --- [io-8181-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:03:2887] DEBUG 4980 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 36 mappings in 'requestMappingHandlerMapping'
+[2024-04-04 15:37:03:3043] DEBUG 4980 --- [           main] o.s.w.s.h.SimpleUrlHandlerMapping        : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+[2024-04-04 15:37:03:3312] DEBUG 4980 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+[2024-04-04 15:37:03:3378] DEBUG 4980 --- [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+[2024-04-04 15:37:24:24166] INFO  4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+[2024-04-04 15:37:24:24166] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+[2024-04-04 15:37:24:24166] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+[2024-04-04 15:37:24:24166] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+[2024-04-04 15:37:24:24167] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@2341c1b2
+[2024-04-04 15:37:24:24167] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@3792ab34
+[2024-04-04 15:37:24:24167] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+[2024-04-04 15:37:24:24167] INFO  4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+[2024-04-04 15:37:24:24199] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/board/list", parameters={}
+[2024-04-04 15:37:24:24201] DEBUG 4980 --- [nio-8181-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.controller.BoardController#list(Model, Search)
+[2024-04-04 15:37:24:24574] DEBUG 4980 --- [nio-8181-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+[2024-04-04 15:37:24:24582] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.view.JstlView            : View name 'chap05/list', model {s=Search(type=, keyword=), org.springframework.validation.BindingResult.s=org.springframework.validation.BeanPropertyBindingResult: 0 errors, bList=[BoardListResponseDTO(boardNo=493, shortTitle=재밌는 글..., shortContent=재밌는 내용 91, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 91), BoardListResponseDTO(boardNo=492, shortTitle=재밌는 글..., shortContent=재밌는 내용 90, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 90), BoardListResponseDTO(boardNo=491, shortTitle=재밌는 글..., shortContent=재밌는 내용 89, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 89), BoardListResponseDTO(boardNo=490, shortTitle=재밌는 글..., shortContent=재밌는 내용 88, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 88), BoardListResponseDTO(boardNo=489, shortTitle=재밌는 글..., shortContent=재밌는 내용 87, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 87), BoardListResponseDTO(boardNo=488, shortTitle=재밌는 글..., shortContent=재밌는 내용 86, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 86)], maker=PageMaker(begin=1, end=10, finalPage=82, prev=false, next=true, page=Search(type=, keyword=), totalCount=489), org.springframework.validation.BindingResult.maker=org.springframework.validation.BeanPropertyBindingResult: 0 errors}
+[2024-04-04 15:37:24:24587] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/chap05/list.jsp]
+[2024-04-04 15:37:25:25440] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:25:25459] DEBUG 4980 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/main.css", parameters={}
+[2024-04-04 15:37:25:25460] DEBUG 4980 --- [nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/logo.png", parameters={}
+[2024-04-04 15:37:25:25460] DEBUG 4980 --- [nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/list.css", parameters={}
+[2024-04-04 15:37:25:25460] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/anonymous.jpg", parameters={}
+[2024-04-04 15:37:25:25462] DEBUG 4980 --- [nio-8181-exec-2] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:25:25463] DEBUG 4980 --- [nio-8181-exec-4] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:25:25463] DEBUG 4980 --- [nio-8181-exec-5] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:25:25463] DEBUG 4980 --- [nio-8181-exec-3] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:25:25466] DEBUG 4980 --- [nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/assets/js/side-menu.js", parameters={}
+[2024-04-04 15:37:25:25467] DEBUG 4980 --- [nio-8181-exec-6] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:25:25478] DEBUG 4980 --- [nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:25:25478] DEBUG 4980 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:25:25478] DEBUG 4980 --- [nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:25:25478] DEBUG 4980 --- [nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:25:25478] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:31:31268] DEBUG 4980 --- [nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/board/detail/491?pageNo=1&amount=6&type=&keyword=", parameters={masked}
+[2024-04-04 15:37:31:31269] DEBUG 4980 --- [nio-8181-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.controller.BoardController#detail(int, Search, Model)
+[2024-04-04 15:37:31:31281] DEBUG 4980 --- [nio-8181-exec-7] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+[2024-04-04 15:37:31:31283] DEBUG 4980 --- [nio-8181-exec-7] o.s.web.servlet.view.JstlView            : View name 'chap05/detail', model {s=Search(type=, keyword=), org.springframework.validation.BindingResult.s=org.springframework.validation.BeanPropertyBindingResult: 0 errors, b=BoardDetailResponseDTO(boardNo=491, title=재밌는 글 89, content=재밌는 내용 89, regDate=2024-04-01 09:41, writer=재밌는 사람 89), org.springframework.validation.BindingResult.b=org.springframework.validation.BeanPropertyBindingResult: 0 errors}
+[2024-04-04 15:37:31:31283] DEBUG 4980 --- [nio-8181-exec-7] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/chap05/detail.jsp]
+[2024-04-04 15:37:31:31483] DEBUG 4980 --- [nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:31:31502] DEBUG 4980 --- [io-8181-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/logo.png", parameters={}
+[2024-04-04 15:37:31:31502] DEBUG 4980 --- [nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/main.css", parameters={}
+[2024-04-04 15:37:31:31502] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/assets/js/side-menu.js", parameters={}
+[2024-04-04 15:37:31:31502] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/anonymous.jpg", parameters={}
+[2024-04-04 15:37:31:31502] DEBUG 4980 --- [nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/list.css", parameters={}
+[2024-04-04 15:37:31:31504] DEBUG 4980 --- [nio-8181-exec-1] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:31:31505] DEBUG 4980 --- [nio-8181-exec-9] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:31:31505] DEBUG 4980 --- [io-8181-exec-10] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:31:31505] DEBUG 4980 --- [nio-8181-exec-8] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:31:31504] DEBUG 4980 --- [nio-8181-exec-5] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:31:31508] DEBUG 4980 --- [nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:31:31508] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:31:31508] DEBUG 4980 --- [nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:31:31508] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:31:31509] DEBUG 4980 --- [io-8181-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:31:31521] DEBUG 4980 --- [nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/replies/491/page/1", parameters={}
+[2024-04-04 15:37:31:31521] DEBUG 4980 --- [nio-8181-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.api.ReplyApiController#list(int, int)
+[2024-04-04 15:37:31:31614] DEBUG 4980 --- [nio-8181-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+[2024-04-04 15:37:31:31617] DEBUG 4980 --- [nio-8181-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ReplyListResponseDTO(count=0, pageInfo=PageMaker(begin=1, end=0, finalPage=0, prev=false, next=false (truncated)...]
+[2024-04-04 15:37:31:31633] DEBUG 4980 --- [nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:33:33283] DEBUG 4980 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/board/list", parameters={}
+[2024-04-04 15:37:33:33283] DEBUG 4980 --- [nio-8181-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.controller.BoardController#list(Model, Search)
+[2024-04-04 15:37:33:33293] DEBUG 4980 --- [nio-8181-exec-2] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+[2024-04-04 15:37:33:33293] DEBUG 4980 --- [nio-8181-exec-2] o.s.web.servlet.view.JstlView            : View name 'chap05/list', model {s=Search(type=, keyword=), org.springframework.validation.BindingResult.s=org.springframework.validation.BeanPropertyBindingResult: 0 errors, bList=[BoardListResponseDTO(boardNo=493, shortTitle=재밌는 글..., shortContent=재밌는 내용 91, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 91), BoardListResponseDTO(boardNo=492, shortTitle=재밌는 글..., shortContent=재밌는 내용 90, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 90), BoardListResponseDTO(boardNo=491, shortTitle=재밌는 글..., shortContent=재밌는 내용 89, regDate=2024-04-01 09:41, viewCount=1, writer=재밌는 사람 89), BoardListResponseDTO(boardNo=490, shortTitle=재밌는 글..., shortContent=재밌는 내용 88, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 88), BoardListResponseDTO(boardNo=489, shortTitle=재밌는 글..., shortContent=재밌는 내용 87, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 87), BoardListResponseDTO(boardNo=488, shortTitle=재밌는 글..., shortContent=재밌는 내용 86, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 86)], maker=PageMaker(begin=1, end=10, finalPage=82, prev=false, next=true, page=Search(type=, keyword=), totalCount=489), org.springframework.validation.BindingResult.maker=org.springframework.validation.BeanPropertyBindingResult: 0 errors}
+[2024-04-04 15:37:33:33293] DEBUG 4980 --- [nio-8181-exec-2] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/chap05/list.jsp]
+[2024-04-04 15:37:33:33296] DEBUG 4980 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:33:33307] DEBUG 4980 --- [nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/main.css", parameters={}
+[2024-04-04 15:37:33:33307] DEBUG 4980 --- [nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/anonymous.jpg", parameters={}
+[2024-04-04 15:37:33:33307] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/assets/js/side-menu.js", parameters={}
+[2024-04-04 15:37:33:33307] DEBUG 4980 --- [nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/logo.png", parameters={}
+[2024-04-04 15:37:33:33307] DEBUG 4980 --- [nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/list.css", parameters={}
+[2024-04-04 15:37:33:33308] DEBUG 4980 --- [nio-8181-exec-6] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:33:33308] DEBUG 4980 --- [nio-8181-exec-7] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:33:33308] DEBUG 4980 --- [nio-8181-exec-1] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:33:33308] DEBUG 4980 --- [nio-8181-exec-4] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:33:33308] DEBUG 4980 --- [nio-8181-exec-8] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:33:33311] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:33:33311] DEBUG 4980 --- [nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:33:33311] DEBUG 4980 --- [nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:33:33311] DEBUG 4980 --- [nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:33:33311] DEBUG 4980 --- [nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:36:35864] DEBUG 4980 --- [nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/members/sign-in", parameters={}
+[2024-04-04 15:37:36:35864] DEBUG 4980 --- [nio-8181-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.controller.MemberController#signIn()
+[2024-04-04 15:37:36:35866] DEBUG 4980 --- [nio-8181-exec-9] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+[2024-04-04 15:37:36:35866] DEBUG 4980 --- [nio-8181-exec-9] o.s.web.servlet.view.JstlView            : View name 'members/sign-in', model {}
+[2024-04-04 15:37:36:35866] DEBUG 4980 --- [nio-8181-exec-9] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/members/sign-in.jsp]
+[2024-04-04 15:37:36:35986] DEBUG 4980 --- [nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:36:35999] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/assets/js/side-menu.js", parameters={}
+[2024-04-04 15:37:36:35999] DEBUG 4980 --- [nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/logo.png", parameters={}
+[2024-04-04 15:37:36:35999] DEBUG 4980 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/anonymous.jpg", parameters={}
+[2024-04-04 15:37:36:35999] DEBUG 4980 --- [io-8181-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/list.css", parameters={}
+[2024-04-04 15:37:36:35999] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/main.css", parameters={}
+[2024-04-04 15:37:36:35999] DEBUG 4980 --- [nio-8181-exec-1] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:36:35999] DEBUG 4980 --- [nio-8181-exec-3] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:36:35999] DEBUG 4980 --- [nio-8181-exec-5] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:36:35999] DEBUG 4980 --- [nio-8181-exec-2] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:36:36001] DEBUG 4980 --- [io-8181-exec-10] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:36:36003] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:36:36004] DEBUG 4980 --- [nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:36:36003] DEBUG 4980 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:36:36003] DEBUG 4980 --- [io-8181-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:36:36003] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:41:41017] DEBUG 4980 --- [nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : POST "/members/sign-in", parameters={masked}
+[2024-04-04 15:37:41:41018] DEBUG 4980 --- [nio-8181-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.controller.MemberController#signIn(LoginRequestDTO, RedirectAttributes, HttpServletResponse, HttpServletRequest)
+[2024-04-04 15:37:41:41092] DEBUG 4980 --- [nio-8181-exec-4] o.s.web.servlet.view.RedirectView        : View name 'redirect:', model {}
+[2024-04-04 15:37:41:41095] DEBUG 4980 --- [nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 302 FOUND
+[2024-04-04 15:37:41:41098] DEBUG 4980 --- [nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/board/list", parameters={}
+[2024-04-04 15:37:41:41099] DEBUG 4980 --- [nio-8181-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.controller.BoardController#list(Model, Search)
+[2024-04-04 15:37:41:41105] DEBUG 4980 --- [nio-8181-exec-8] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+[2024-04-04 15:37:41:41106] DEBUG 4980 --- [nio-8181-exec-8] o.s.web.servlet.view.JstlView            : View name 'chap05/list', model {result=SUCCESS, s=Search(type=, keyword=), org.springframework.validation.BindingResult.s=org.springframework.validation.BeanPropertyBindingResult: 0 errors, bList=[BoardListResponseDTO(boardNo=493, shortTitle=재밌는 글..., shortContent=재밌는 내용 91, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 91), BoardListResponseDTO(boardNo=492, shortTitle=재밌는 글..., shortContent=재밌는 내용 90, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 90), BoardListResponseDTO(boardNo=491, shortTitle=재밌는 글..., shortContent=재밌는 내용 89, regDate=2024-04-01 09:41, viewCount=1, writer=재밌는 사람 89), BoardListResponseDTO(boardNo=490, shortTitle=재밌는 글..., shortContent=재밌는 내용 88, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 88), BoardListResponseDTO(boardNo=489, shortTitle=재밌는 글..., shortContent=재밌는 내용 87, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 87), BoardListResponseDTO(boardNo=488, shortTitle=재밌는 글..., shortContent=재밌는 내용 86, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 86)], maker=PageMaker(begin=1, end=10, finalPage=82, prev=false, next=true, page=Search(type=, keyword=), totalCount=489), org.springframework.validation.BindingResult.maker=org.springframework.validation.BeanPropertyBindingResult: 0 errors}
+[2024-04-04 15:37:41:41106] DEBUG 4980 --- [nio-8181-exec-8] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/chap05/list.jsp]
+[2024-04-04 15:37:41:41112] DEBUG 4980 --- [nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:41:41123] DEBUG 4980 --- [nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/main.css", parameters={}
+[2024-04-04 15:37:41:41124] DEBUG 4980 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/anonymous.jpg", parameters={}
+[2024-04-04 15:37:41:41124] DEBUG 4980 --- [nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/list.css", parameters={}
+[2024-04-04 15:37:41:41124] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/assets/js/side-menu.js", parameters={}
+[2024-04-04 15:37:41:41124] DEBUG 4980 --- [nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/logo.png", parameters={}
+[2024-04-04 15:37:41:41124] DEBUG 4980 --- [nio-8181-exec-2] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:41:41124] DEBUG 4980 --- [nio-8181-exec-6] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:41:41124] DEBUG 4980 --- [nio-8181-exec-1] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:41:41126] DEBUG 4980 --- [nio-8181-exec-7] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:41:41129] DEBUG 4980 --- [nio-8181-exec-9] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:41:41133] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:41:41133] DEBUG 4980 --- [nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:41:41133] DEBUG 4980 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:41:41133] DEBUG 4980 --- [nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:41:41133] DEBUG 4980 --- [nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:46:45911] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/board/write", parameters={}
+[2024-04-04 15:37:46:45911] DEBUG 4980 --- [nio-8181-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.controller.BoardController#write()
+[2024-04-04 15:37:46:45912] DEBUG 4980 --- [nio-8181-exec-5] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+[2024-04-04 15:37:46:45912] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.view.JstlView            : View name 'chap05/write', model {}
+[2024-04-04 15:37:46:45912] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/chap05/write.jsp]
+[2024-04-04 15:37:46:46011] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:46:46028] DEBUG 4980 --- [nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/main.css", parameters={}
+[2024-04-04 15:37:46:46029] DEBUG 4980 --- [nio-8181-exec-3] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:46:46032] DEBUG 4980 --- [nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:55:55631] DEBUG 4980 --- [io-8181-exec-10] o.s.web.servlet.DispatcherServlet        : POST "/board/write", parameters={masked}
+[2024-04-04 15:37:55:55631] DEBUG 4980 --- [io-8181-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.controller.BoardController#write(BoardWriteRequestDTO, HttpSession)
+[2024-04-04 15:37:55:55641] DEBUG 4980 --- [io-8181-exec-10] o.s.web.servlet.view.RedirectView        : View name 'redirect:', model {}
+[2024-04-04 15:37:55:55641] DEBUG 4980 --- [io-8181-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 302 FOUND
+[2024-04-04 15:37:55:55643] DEBUG 4980 --- [nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/board/list", parameters={}
+[2024-04-04 15:37:55:55643] DEBUG 4980 --- [nio-8181-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.controller.BoardController#list(Model, Search)
+[2024-04-04 15:37:55:55648] DEBUG 4980 --- [nio-8181-exec-4] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+[2024-04-04 15:37:55:55648] DEBUG 4980 --- [nio-8181-exec-4] o.s.web.servlet.view.JstlView            : View name 'chap05/list', model {s=Search(type=, keyword=), org.springframework.validation.BindingResult.s=org.springframework.validation.BeanPropertyBindingResult: 0 errors, bList=[BoardListResponseDTO(boardNo=504, shortTitle=나는 일반..., shortContent=<p>음하ㅏ하</p>
+, regDate=2024-04-04 15:37, viewCount=0, writer=kim1234), BoardListResponseDTO(boardNo=493, shortTitle=재밌는 글..., shortContent=재밌는 내용 91, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 91), BoardListResponseDTO(boardNo=492, shortTitle=재밌는 글..., shortContent=재밌는 내용 90, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 90), BoardListResponseDTO(boardNo=491, shortTitle=재밌는 글..., shortContent=재밌는 내용 89, regDate=2024-04-01 09:41, viewCount=1, writer=재밌는 사람 89), BoardListResponseDTO(boardNo=490, shortTitle=재밌는 글..., shortContent=재밌는 내용 88, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 88), BoardListResponseDTO(boardNo=489, shortTitle=재밌는 글..., shortContent=재밌는 내용 87, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 87)], maker=PageMaker(begin=1, end=10, finalPage=82, prev=false, next=true, page=Search(type=, keyword=), totalCount=490), org.springframework.validation.BindingResult.maker=org.springframework.validation.BeanPropertyBindingResult: 0 errors}
+[2024-04-04 15:37:55:55649] DEBUG 4980 --- [nio-8181-exec-4] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/chap05/list.jsp]
+[2024-04-04 15:37:55:55652] DEBUG 4980 --- [nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:55:55664] DEBUG 4980 --- [nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/logo.png", parameters={}
+[2024-04-04 15:37:55:55664] DEBUG 4980 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/anonymous.jpg", parameters={}
+[2024-04-04 15:37:55:55664] DEBUG 4980 --- [nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/main.css", parameters={}
+[2024-04-04 15:37:55:55664] DEBUG 4980 --- [nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/assets/js/side-menu.js", parameters={}
+[2024-04-04 15:37:55:55664] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/list.css", parameters={}
+[2024-04-04 15:37:55:55666] DEBUG 4980 --- [nio-8181-exec-9] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:55:55666] DEBUG 4980 --- [nio-8181-exec-1] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:55:55666] DEBUG 4980 --- [nio-8181-exec-8] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:55:55666] DEBUG 4980 --- [nio-8181-exec-2] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:55:55666] DEBUG 4980 --- [nio-8181-exec-6] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:37:55:55668] DEBUG 4980 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:55:55668] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:55:55668] DEBUG 4980 --- [nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:55:55668] DEBUG 4980 --- [nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:37:55:55668] DEBUG 4980 --- [nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:07:67703] DEBUG 4980 --- [nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/board/detail/492?pageNo=1&amount=6&type=&keyword=", parameters={masked}
+[2024-04-04 15:38:07:67705] DEBUG 4980 --- [nio-8181-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.controller.BoardController#detail(int, Search, Model)
+[2024-04-04 15:38:07:67713] DEBUG 4980 --- [nio-8181-exec-7] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+[2024-04-04 15:38:07:67713] DEBUG 4980 --- [nio-8181-exec-7] o.s.web.servlet.view.JstlView            : View name 'chap05/detail', model {s=Search(type=, keyword=), org.springframework.validation.BindingResult.s=org.springframework.validation.BeanPropertyBindingResult: 0 errors, b=BoardDetailResponseDTO(boardNo=492, title=재밌는 글 90, content=재밌는 내용 90, regDate=2024-04-01 09:41, writer=재밌는 사람 90), org.springframework.validation.BindingResult.b=org.springframework.validation.BeanPropertyBindingResult: 0 errors}
+[2024-04-04 15:38:07:67713] DEBUG 4980 --- [nio-8181-exec-7] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/chap05/detail.jsp]
+[2024-04-04 15:38:07:67715] DEBUG 4980 --- [nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:07:67728] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/main.css", parameters={}
+[2024-04-04 15:38:07:67729] DEBUG 4980 --- [nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/list.css", parameters={}
+[2024-04-04 15:38:07:67729] DEBUG 4980 --- [nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/anonymous.jpg", parameters={}
+[2024-04-04 15:38:07:67729] DEBUG 4980 --- [nio-8181-exec-5] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:38:07:67729] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/assets/js/side-menu.js", parameters={}
+[2024-04-04 15:38:07:67729] DEBUG 4980 --- [io-8181-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/logo.png", parameters={}
+[2024-04-04 15:38:07:67729] DEBUG 4980 --- [nio-8181-exec-3] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:38:07:67729] DEBUG 4980 --- [nio-8181-exec-4] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:38:07:67729] DEBUG 4980 --- [nio-8181-exec-1] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:38:07:67729] DEBUG 4980 --- [io-8181-exec-10] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:38:07:67730] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:07:67730] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:07:67730] DEBUG 4980 --- [nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:07:67730] DEBUG 4980 --- [nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:07:67731] DEBUG 4980 --- [io-8181-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:07:67736] DEBUG 4980 --- [nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/api/v1/replies/492/page/1", parameters={}
+[2024-04-04 15:38:07:67737] DEBUG 4980 --- [nio-8181-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.api.ReplyApiController#list(int, int)
+[2024-04-04 15:38:07:67741] DEBUG 4980 --- [nio-8181-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+[2024-04-04 15:38:07:67741] DEBUG 4980 --- [nio-8181-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [ReplyListResponseDTO(count=0, pageInfo=PageMaker(begin=1, end=0, finalPage=0, prev=false, next=false (truncated)...]
+[2024-04-04 15:38:07:67742] DEBUG 4980 --- [nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:09:69393] DEBUG 4980 --- [nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/board/list", parameters={}
+[2024-04-04 15:38:09:69393] DEBUG 4980 --- [nio-8181-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.controller.BoardController#list(Model, Search)
+[2024-04-04 15:38:09:69398] DEBUG 4980 --- [nio-8181-exec-8] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+[2024-04-04 15:38:09:69398] DEBUG 4980 --- [nio-8181-exec-8] o.s.web.servlet.view.JstlView            : View name 'chap05/list', model {s=Search(type=, keyword=), org.springframework.validation.BindingResult.s=org.springframework.validation.BeanPropertyBindingResult: 0 errors, bList=[BoardListResponseDTO(boardNo=504, shortTitle=나는 일반..., shortContent=<p>음하ㅏ하</p>
+, regDate=2024-04-04 15:37, viewCount=0, writer=kim1234), BoardListResponseDTO(boardNo=493, shortTitle=재밌는 글..., shortContent=재밌는 내용 91, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 91), BoardListResponseDTO(boardNo=492, shortTitle=재밌는 글..., shortContent=재밌는 내용 90, regDate=2024-04-01 09:41, viewCount=1, writer=재밌는 사람 90), BoardListResponseDTO(boardNo=491, shortTitle=재밌는 글..., shortContent=재밌는 내용 89, regDate=2024-04-01 09:41, viewCount=1, writer=재밌는 사람 89), BoardListResponseDTO(boardNo=490, shortTitle=재밌는 글..., shortContent=재밌는 내용 88, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 88), BoardListResponseDTO(boardNo=489, shortTitle=재밌는 글..., shortContent=재밌는 내용 87, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 87)], maker=PageMaker(begin=1, end=10, finalPage=82, prev=false, next=true, page=Search(type=, keyword=), totalCount=490), org.springframework.validation.BindingResult.maker=org.springframework.validation.BeanPropertyBindingResult: 0 errors}
+[2024-04-04 15:38:09:69398] DEBUG 4980 --- [nio-8181-exec-8] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/chap05/list.jsp]
+[2024-04-04 15:38:09:69403] DEBUG 4980 --- [nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:09:69414] DEBUG 4980 --- [nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/assets/js/side-menu.js", parameters={}
+[2024-04-04 15:38:09:69414] DEBUG 4980 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/main.css", parameters={}
+[2024-04-04 15:38:09:69414] DEBUG 4980 --- [nio-8181-exec-9] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:38:09:69414] DEBUG 4980 --- [nio-8181-exec-2] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:38:09:69415] DEBUG 4980 --- [nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:09:69415] DEBUG 4980 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:16:75966] DEBUG 4980 --- [nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/members/sign-out", parameters={}
+[2024-04-04 15:38:16:75968] DEBUG 4980 --- [nio-8181-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.controller.MemberController#signOut(HttpSession)
+[2024-04-04 15:38:16:75970] DEBUG 4980 --- [nio-8181-exec-7] o.s.web.servlet.view.RedirectView        : View name 'redirect:', model {}
+[2024-04-04 15:38:16:75970] DEBUG 4980 --- [nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 302 FOUND
+[2024-04-04 15:38:16:75974] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+[2024-04-04 15:38:16:75974] DEBUG 4980 --- [nio-8181-exec-5] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+[2024-04-04 15:38:16:75974] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.view.JstlView            : View name 'index', model {}
+[2024-04-04 15:38:16:75974] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/index.jsp]
+[2024-04-04 15:38:16:76042] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:22:82372] DEBUG 4980 --- [nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/members/sign-in", parameters={}
+[2024-04-04 15:38:22:82372] DEBUG 4980 --- [nio-8181-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.controller.MemberController#signIn()
+[2024-04-04 15:38:22:82372] DEBUG 4980 --- [nio-8181-exec-4] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+[2024-04-04 15:38:22:82372] DEBUG 4980 --- [nio-8181-exec-4] o.s.web.servlet.view.JstlView            : View name 'members/sign-in', model {}
+[2024-04-04 15:38:22:82372] DEBUG 4980 --- [nio-8181-exec-4] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/members/sign-in.jsp]
+[2024-04-04 15:38:22:82375] DEBUG 4980 --- [nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:22:82386] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/main.css", parameters={}
+[2024-04-04 15:38:22:82387] DEBUG 4980 --- [nio-8181-exec-1] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:38:22:82388] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:22:82395] DEBUG 4980 --- [nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/list.css", parameters={}
+[2024-04-04 15:38:22:82395] DEBUG 4980 --- [nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/anonymous.jpg", parameters={}
+[2024-04-04 15:38:22:82395] DEBUG 4980 --- [io-8181-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/logo.png", parameters={}
+[2024-04-04 15:38:22:82396] DEBUG 4980 --- [nio-8181-exec-3] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:38:22:82396] DEBUG 4980 --- [nio-8181-exec-6] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:38:22:82396] DEBUG 4980 --- [io-8181-exec-10] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:38:22:82398] DEBUG 4980 --- [nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:22:82398] DEBUG 4980 --- [nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:22:82398] DEBUG 4980 --- [io-8181-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:22:82403] DEBUG 4980 --- [nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/assets/js/side-menu.js", parameters={}
+[2024-04-04 15:38:22:82403] DEBUG 4980 --- [nio-8181-exec-8] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:38:22:82404] DEBUG 4980 --- [nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:33:93708] DEBUG 4980 --- [nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : POST "/members/sign-in", parameters={masked}
+[2024-04-04 15:38:33:93709] DEBUG 4980 --- [nio-8181-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.controller.MemberController#signIn(LoginRequestDTO, RedirectAttributes, HttpServletResponse, HttpServletRequest)
+[2024-04-04 15:38:33:93770] DEBUG 4980 --- [nio-8181-exec-9] o.s.web.servlet.view.RedirectView        : View name 'redirect:', model {}
+[2024-04-04 15:38:33:93771] DEBUG 4980 --- [nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 302 FOUND
+[2024-04-04 15:38:33:93775] DEBUG 4980 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/board/list", parameters={}
+[2024-04-04 15:38:33:93775] DEBUG 4980 --- [nio-8181-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.controller.BoardController#list(Model, Search)
+[2024-04-04 15:38:34:93780] DEBUG 4980 --- [nio-8181-exec-2] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+[2024-04-04 15:38:34:93781] DEBUG 4980 --- [nio-8181-exec-2] o.s.web.servlet.view.JstlView            : View name 'chap05/list', model {result=SUCCESS, s=Search(type=, keyword=), org.springframework.validation.BindingResult.s=org.springframework.validation.BeanPropertyBindingResult: 0 errors, bList=[BoardListResponseDTO(boardNo=504, shortTitle=나는 일반..., shortContent=<p>음하ㅏ하</p>
+, regDate=2024-04-04 15:37, viewCount=0, writer=kim1234), BoardListResponseDTO(boardNo=493, shortTitle=재밌는 글..., shortContent=재밌는 내용 91, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 91), BoardListResponseDTO(boardNo=492, shortTitle=재밌는 글..., shortContent=재밌는 내용 90, regDate=2024-04-01 09:41, viewCount=1, writer=재밌는 사람 90), BoardListResponseDTO(boardNo=491, shortTitle=재밌는 글..., shortContent=재밌는 내용 89, regDate=2024-04-01 09:41, viewCount=1, writer=재밌는 사람 89), BoardListResponseDTO(boardNo=490, shortTitle=재밌는 글..., shortContent=재밌는 내용 88, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 88), BoardListResponseDTO(boardNo=489, shortTitle=재밌는 글..., shortContent=재밌는 내용 87, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 87)], maker=PageMaker(begin=1, end=10, finalPage=82, prev=false, next=true, page=Search(type=, keyword=), totalCount=490), org.springframework.validation.BindingResult.maker=org.springframework.validation.BeanPropertyBindingResult: 0 errors}
+[2024-04-04 15:38:34:93781] DEBUG 4980 --- [nio-8181-exec-2] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/chap05/list.jsp]
+[2024-04-04 15:38:34:93782] DEBUG 4980 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:34:93795] DEBUG 4980 --- [nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/main.css", parameters={}
+[2024-04-04 15:38:34:93796] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/anonymous.jpg", parameters={}
+[2024-04-04 15:38:34:93796] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/list.css", parameters={}
+[2024-04-04 15:38:34:93796] DEBUG 4980 --- [nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/logo.png", parameters={}
+[2024-04-04 15:38:34:93796] DEBUG 4980 --- [nio-8181-exec-7] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:38:34:93796] DEBUG 4980 --- [nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/assets/js/side-menu.js", parameters={}
+[2024-04-04 15:38:34:93796] DEBUG 4980 --- [nio-8181-exec-1] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:38:34:93796] DEBUG 4980 --- [nio-8181-exec-5] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:38:34:93796] DEBUG 4980 --- [nio-8181-exec-6] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:38:34:93796] DEBUG 4980 --- [nio-8181-exec-4] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:38:34:93797] DEBUG 4980 --- [nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:34:93797] DEBUG 4980 --- [nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:34:93797] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:34:93797] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:38:34:93799] DEBUG 4980 --- [nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:41:31:271549] DEBUG 4980 --- [nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/members/sign-in", parameters={}
+[2024-04-04 15:41:31:271549] DEBUG 4980 --- [nio-8181-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.controller.MemberController#signIn()
+[2024-04-04 15:41:31:271552] DEBUG 4980 --- [nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:41:31:271563] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+[2024-04-04 15:41:31:271564] DEBUG 4980 --- [nio-8181-exec-5] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+[2024-04-04 15:41:31:271564] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.view.JstlView            : View name 'index', model {}
+[2024-04-04 15:41:31:271564] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/index.jsp]
+[2024-04-04 15:41:31:271565] DEBUG 4980 --- [nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:41:41:281081] DEBUG 4980 --- [nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/members/sign-in", parameters={}
+[2024-04-04 15:41:41:281081] DEBUG 4980 --- [nio-8181-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.controller.MemberController#signIn()
+[2024-04-04 15:41:41:281082] DEBUG 4980 --- [nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:41:41:281101] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+[2024-04-04 15:41:41:281101] DEBUG 4980 --- [nio-8181-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+[2024-04-04 15:41:41:281101] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.view.JstlView            : View name 'index', model {}
+[2024-04-04 15:41:41:281103] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/index.jsp]
+[2024-04-04 15:41:41:281104] DEBUG 4980 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:42:07:3021] DEBUG 12180 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 36 mappings in 'requestMappingHandlerMapping'
+[2024-04-04 15:42:07:3210] DEBUG 12180 --- [           main] o.s.w.s.h.SimpleUrlHandlerMapping        : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+[2024-04-04 15:42:07:3472] DEBUG 12180 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+[2024-04-04 15:42:07:3533] DEBUG 12180 --- [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+[2024-04-04 15:42:14:10008] INFO  12180 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+[2024-04-04 15:42:14:10009] DEBUG 12180 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+[2024-04-04 15:42:14:10009] DEBUG 12180 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+[2024-04-04 15:42:14:10009] DEBUG 12180 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+[2024-04-04 15:42:14:10010] DEBUG 12180 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@71709752
+[2024-04-04 15:42:14:10010] DEBUG 12180 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@3e72d83e
+[2024-04-04 15:42:14:10010] DEBUG 12180 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+[2024-04-04 15:42:14:10010] INFO  12180 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+[2024-04-04 15:42:14:10049] DEBUG 12180 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/members/sign-in", parameters={}
+[2024-04-04 15:42:14:10050] DEBUG 12180 --- [nio-8181-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.controller.MemberController#signIn()
+[2024-04-04 15:42:14:10097] DEBUG 12180 --- [nio-8181-exec-2] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+[2024-04-04 15:42:14:10098] DEBUG 12180 --- [nio-8181-exec-2] o.s.web.servlet.view.JstlView            : View name 'members/sign-in', model {}
+[2024-04-04 15:42:14:10103] DEBUG 12180 --- [nio-8181-exec-2] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/members/sign-in.jsp]
+[2024-04-04 15:42:15:10791] DEBUG 12180 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:42:15:10801] DEBUG 12180 --- [nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/main.css", parameters={}
+[2024-04-04 15:42:15:10802] DEBUG 12180 --- [nio-8181-exec-4] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:42:15:10809] DEBUG 12180 --- [nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/logo.png", parameters={}
+[2024-04-04 15:42:15:10809] DEBUG 12180 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/list.css", parameters={}
+[2024-04-04 15:42:15:10809] DEBUG 12180 --- [nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/anonymous.jpg", parameters={}
+[2024-04-04 15:42:15:10810] DEBUG 12180 --- [nio-8181-exec-1] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:42:15:10810] DEBUG 12180 --- [nio-8181-exec-5] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:42:15:10810] DEBUG 12180 --- [nio-8181-exec-3] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:42:15:10815] DEBUG 12180 --- [nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:42:15:10815] DEBUG 12180 --- [nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:42:15:10815] DEBUG 12180 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:42:15:10815] DEBUG 12180 --- [nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:42:15:10821] DEBUG 12180 --- [nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/assets/js/side-menu.js", parameters={}
+[2024-04-04 15:42:15:10822] DEBUG 12180 --- [nio-8181-exec-6] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:42:15:10825] DEBUG 12180 --- [nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:47:37:2897] DEBUG 3672 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 36 mappings in 'requestMappingHandlerMapping'
+[2024-04-04 15:47:37:3054] DEBUG 3672 --- [           main] o.s.w.s.h.SimpleUrlHandlerMapping        : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+[2024-04-04 15:47:37:3311] DEBUG 3672 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+[2024-04-04 15:47:37:3377] DEBUG 3672 --- [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+[2024-04-04 15:47:47:13161] INFO  3672 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+[2024-04-04 15:47:47:13162] DEBUG 3672 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+[2024-04-04 15:47:47:13162] DEBUG 3672 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+[2024-04-04 15:47:47:13162] DEBUG 3672 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+[2024-04-04 15:47:47:13162] DEBUG 3672 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@758ba9fe
+[2024-04-04 15:47:47:13162] DEBUG 3672 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@74ab2202
+[2024-04-04 15:47:47:13163] DEBUG 3672 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+[2024-04-04 15:47:47:13163] INFO  3672 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+[2024-04-04 15:47:47:13188] DEBUG 3672 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/members/sign-in", parameters={}
+[2024-04-04 15:47:47:13189] DEBUG 3672 --- [nio-8181-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.controller.MemberController#signIn()
+[2024-04-04 15:47:47:13224] DEBUG 3672 --- [nio-8181-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+[2024-04-04 15:47:47:13225] DEBUG 3672 --- [nio-8181-exec-1] o.s.web.servlet.view.JstlView            : View name 'members/sign-in', model {}
+[2024-04-04 15:47:47:13229] DEBUG 3672 --- [nio-8181-exec-1] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/members/sign-in.jsp]
+[2024-04-04 15:47:48:14017] DEBUG 3672 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:47:48:14033] DEBUG 3672 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/main.css", parameters={}
+[2024-04-04 15:47:48:14033] DEBUG 3672 --- [nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/list.css", parameters={}
+[2024-04-04 15:47:48:14035] DEBUG 3672 --- [nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/logo.png", parameters={}
+[2024-04-04 15:47:48:14035] DEBUG 3672 --- [nio-8181-exec-2] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:47:48:14035] DEBUG 3672 --- [nio-8181-exec-3] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:47:48:14036] DEBUG 3672 --- [nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/assets/js/side-menu.js", parameters={}
+[2024-04-04 15:47:48:14036] DEBUG 3672 --- [nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/anonymous.jpg", parameters={}
+[2024-04-04 15:47:48:14037] DEBUG 3672 --- [nio-8181-exec-4] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:47:48:14038] DEBUG 3672 --- [nio-8181-exec-7] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:47:48:14038] DEBUG 3672 --- [nio-8181-exec-8] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:47:48:14050] DEBUG 3672 --- [nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:47:48:14050] DEBUG 3672 --- [nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:47:48:14050] DEBUG 3672 --- [nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:47:48:14050] DEBUG 3672 --- [nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:47:48:14050] DEBUG 3672 --- [nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:47:57:23478] DEBUG 3672 --- [nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : POST "/members/sign-in", parameters={masked}
+[2024-04-04 15:47:57:23479] DEBUG 3672 --- [nio-8181-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.controller.MemberController#signIn(LoginRequestDTO, RedirectAttributes, HttpServletResponse, HttpServletRequest)
+[2024-04-04 15:47:58:23897] DEBUG 3672 --- [nio-8181-exec-5] o.s.web.servlet.view.RedirectView        : View name 'redirect:', model {}
+[2024-04-04 15:47:58:23901] DEBUG 3672 --- [nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 302 FOUND
+[2024-04-04 15:47:58:23907] DEBUG 3672 --- [nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/board/list", parameters={}
+[2024-04-04 15:47:58:23908] DEBUG 3672 --- [nio-8181-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.spring.mvc.chap05.controller.BoardController#list(Model, Search)
+[2024-04-04 15:47:58:23941] DEBUG 3672 --- [nio-8181-exec-6] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+[2024-04-04 15:47:58:23947] DEBUG 3672 --- [nio-8181-exec-6] o.s.web.servlet.view.JstlView            : View name 'chap05/list', model {result=SUCCESS, s=Search(type=, keyword=), org.springframework.validation.BindingResult.s=org.springframework.validation.BeanPropertyBindingResult: 0 errors, bList=[BoardListResponseDTO(boardNo=504, shortTitle=나는 일반..., shortContent=<p>음하ㅏ하</p>
+, regDate=2024-04-04 15:37, viewCount=0, writer=kim1234), BoardListResponseDTO(boardNo=493, shortTitle=재밌는 글..., shortContent=재밌는 내용 91, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 91), BoardListResponseDTO(boardNo=492, shortTitle=재밌는 글..., shortContent=재밌는 내용 90, regDate=2024-04-01 09:41, viewCount=1, writer=재밌는 사람 90), BoardListResponseDTO(boardNo=491, shortTitle=재밌는 글..., shortContent=재밌는 내용 89, regDate=2024-04-01 09:41, viewCount=1, writer=재밌는 사람 89), BoardListResponseDTO(boardNo=490, shortTitle=재밌는 글..., shortContent=재밌는 내용 88, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 88), BoardListResponseDTO(boardNo=489, shortTitle=재밌는 글..., shortContent=재밌는 내용 87, regDate=2024-04-01 09:41, viewCount=0, writer=재밌는 사람 87)], maker=PageMaker(begin=1, end=10, finalPage=82, prev=false, next=true, page=Search(type=, keyword=), totalCount=490), org.springframework.validation.BindingResult.maker=org.springframework.validation.BeanPropertyBindingResult: 0 errors}
+[2024-04-04 15:47:58:23948] DEBUG 3672 --- [nio-8181-exec-6] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/chap05/list.jsp]
+[2024-04-04 15:47:58:24321] DEBUG 3672 --- [nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:47:58:24341] DEBUG 3672 --- [nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/assets/js/side-menu.js", parameters={}
+[2024-04-04 15:47:58:24341] DEBUG 3672 --- [nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/main.css", parameters={}
+[2024-04-04 15:47:58:24341] DEBUG 3672 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/anonymous.jpg", parameters={}
+[2024-04-04 15:47:58:24341] DEBUG 3672 --- [nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/logo.png", parameters={}
+[2024-04-04 15:47:58:24341] DEBUG 3672 --- [io-8181-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/assets/css/list.css", parameters={}
+[2024-04-04 15:47:58:24343] DEBUG 3672 --- [nio-8181-exec-9] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:47:58:24343] DEBUG 3672 --- [nio-8181-exec-1] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:47:58:24343] DEBUG 3672 --- [io-8181-exec-10] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:47:58:24343] DEBUG 3672 --- [nio-8181-exec-4] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:47:58:24343] DEBUG 3672 --- [nio-8181-exec-8] o.s.w.s.h.SimpleUrlHandlerMapping        : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+[2024-04-04 15:47:58:24346] DEBUG 3672 --- [nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:47:58:24346] DEBUG 3672 --- [nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:47:58:24346] DEBUG 3672 --- [nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:47:58:24346] DEBUG 3672 --- [io-8181-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+[2024-04-04 15:47:58:24347] DEBUG 3672 --- [nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK

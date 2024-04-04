@@ -1,15 +1,20 @@
 package com.spring.mvc.chap05.service;
 
+import com.spring.mvc.chap05.DTO.request.AutoLoginDTO;
 import com.spring.mvc.chap05.DTO.request.LoginRequestDTO;
 import com.spring.mvc.chap05.DTO.request.SignUpRequestDTO;
 import com.spring.mvc.chap05.DTO.response.LoginUserResponseDTO;
 import com.spring.mvc.chap05.entity.Member;
 import com.spring.mvc.chap05.mapper.MemberMapper;
 import com.spring.mvc.util.LoginUtils;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +35,9 @@ public class MemberService {
     }
 
     // 로그인 검증 처리
-    public LoginResult authenticate(LoginRequestDTO dto) {
+    public LoginResult authenticate(LoginRequestDTO dto,
+                                    HttpSession session,
+                                    HttpServletResponse response) {
 
         Member foundMember = memberMapper.findMember(dto.getAccount());
 
@@ -50,8 +57,33 @@ public class MemberService {
             System.out.println("비밀번호가 다르다!");
             return LoginResult.NO_PW;
         }
+        
+        // 자동 로그인 처리
+        if (dto.isAutoLogin()) {
+            // 1. 자동 로그인 쿠키 생성 - 쿠키 안에 절대 중복되지 않는 값을 저장 (각 세션을 구분할 수 있는 브라우저 세션 아이디)
+            Cookie autoLoginCookie = new Cookie(LoginUtils.AUTO_LOGIN_COOKIE, session.getId());
 
-        System.out.println(dto.getAccount() + "님 로그인 성공하셨드아");
+            // 2. 쿠키 설정 - 사용 경로, 수명...
+            int limitTime = 60*60*24*90; // 자동로그인 유지 시간
+            autoLoginCookie.setPath("/");
+            autoLoginCookie.setMaxAge(limitTime);
+
+            // 3. 쿠키를 클라이언트에게 전송하기 위해 응답 객체에 태우기
+            response.addCookie(autoLoginCookie);
+
+            // 인터셉터가 자동로그인 여부 확인 -> 쿠키가 있으면 session 만들어 줄 예정(캡처본 참고)
+            // 4. DB에도 쿠키에 관련된 값들(랜덤한 세션 아이디, 자동 로그인 만료시간)을 저장하기 위해 table 갱신
+            // UPDATE에 필요한 변수는 3개이다. UPDATE tbl_member SET session_id = ?, limit_time = ? WHERE account =?
+            // DTO 만들어서 객체로 전달
+            memberMapper.saveAutoLogin(AutoLoginDTO.builder()
+                    .sessionId(session.getId())
+                    .limitTime(LocalDateTime.now().plus(90))
+                    .account(dto.getAccount())
+                    .build());
+
+        }
+
+        System.out.println(dto.getAccount() + "님 로그인 성공");
 
         return LoginResult.SUCCESS;
     }

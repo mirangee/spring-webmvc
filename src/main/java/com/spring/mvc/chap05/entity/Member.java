@@ -28,4 +28,9 @@ public class Member {
     private String email;
     private String auth;
     private LocalDateTime regDate;
+
+    // 기존 테이블에서 자동 로그인 기능을 위해 컬럼을 추가했기에
+    // DB 테이블과 1:1로 매칭되는 Entity도 필드가 증가해야 한다.
+    private String sessionId;
+    private LocalDateTime limitTime;
 }

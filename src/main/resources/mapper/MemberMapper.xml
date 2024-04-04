@@ -27,4 +27,10 @@
             WHERE email = #{keyword}
         </if>
     </select>
+
+    <update id="saveAutoLogin">
+        UPDATE tbl_member
+        SET session_id = #{sessionID}, limit_time = #{limitTime}
+        WHERE account = #{account}
+    </update>
 </mapper>

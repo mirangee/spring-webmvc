@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static com.spring.mvc.chap05.service.LoginResult.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class MemberServiceTest {
@@ -40,7 +39,7 @@ class MemberServiceTest {
                 .password("hhh4321!")
                 .build();
         // when
-        LoginResult result = memberService.authenticate(dto);
+        LoginResult result = memberService.authenticate(dto, request.getSession(), response);
         // then
         Assertions.assertEquals(SUCCESS, result);
     }
