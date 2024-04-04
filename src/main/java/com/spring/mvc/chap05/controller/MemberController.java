@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/members")
 @RequiredArgsConstructor
+@Slf4j // 이 클래스 안에서 log 찍겠다는 선언
 public class MemberController {
     private final MemberService memberService;
 
@@ -24,7 +26,7 @@ public class MemberController {
     // 응답하고자 하는 화면의 경로가 URL과 동일하다면 void로 처리할 수 있다. (선택사항)
     @GetMapping("/sign-up")
     public void signUp() {
-        System.out.println("/members/sign-up: GET!!!");
+        log.info("/members/sign-up: GET"); //sysout 대신 이렇게 출력(파일로도 출력 가능)
 //        return "members/sign-up";
     }
 
@@ -32,9 +34,8 @@ public class MemberController {
     @GetMapping("/check/{type}/{keyword}")
     @ResponseBody
     public ResponseEntity<?> check(@PathVariable String type, @PathVariable String keyword) {
-        System.out.println("/members/check: async GET!!");
-        System.out.println("type = " + type);
-        System.out.println("keyword = " + keyword);
+        log.info("/members/check: async GET!!");
+        log.debug("type: {}, keyword: {}", type, keyword); // 변수가 들어갈 자리를 중괄호로 지정하고 변수를 알려주면 됨.
 
         boolean flag = memberService.checkDuplicateValue(type, keyword);
         
@@ -42,8 +43,7 @@ public class MemberController {
     }
     @PostMapping("/sign-up")
     public String signUp(SignUpRequestDTO dto) {
-        System.out.println("/members/sign-up: POST!");
-        System.out.println("dto = " + dto);
+        log.info("/members/sign-up: POST, dot: {}", dto);
         memberService.join(dto);
         return "redirect:/board/list";
     }
@@ -51,17 +51,16 @@ public class MemberController {
     // 로그인 양식 화면 요청 처리
     @GetMapping("/sign-in")
     public void signIn() {
-        System.out.println("/members/sign-in : GET!!!");
+        log.info("/members/sign-in : GET!!!");
     }
 
     // 로그인 검증 요청
     @PostMapping("/sign-in")
     public String signIn(LoginRequestDTO dto, RedirectAttributes ra, HttpServletResponse response, HttpServletRequest request) {
-        System.out.println("/members/sign-in: POST!");
-        System.out.println("dto = " + dto);
+        log.info("/members/sign-in: POST!, dto: {}", dto);
 
         LoginResult result = memberService.authenticate(dto);
-        System.out.println("result = " + result);
+        log.debug("result: {}", result);
 
         ra.addFlashAttribute("result", result); //리다이렉트에서 사용하는 객체
 
@@ -96,6 +95,8 @@ public class MemberController {
     // 로그아웃 요청 처리
     @GetMapping("/sign-out")
     public String signOut(HttpSession session) {
+        log.info("members/sign-out: Get");
+
         // 로그아웃 처리 2가지 방법
         // 로그인 정보 외에 다른 정보도 세션에 포함하고 있다면 1번 사용
         // 세션 모든 정보를 초기화해도 된다면 2번 사용

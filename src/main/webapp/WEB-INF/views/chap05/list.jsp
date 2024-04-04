@@ -23,9 +23,9 @@
 
         <div class="main-title-wrapper">
             <h1 class="main-title">꾸러기 게시판</h1>
-
-            <button class="add-btn">새 글 쓰기</button>
-        </div>
+            <c:if test="${login != null}"> <!--로그인 하지 않으면 새글쓰기 버튼 안 보여주기-->
+                <button class="add-btn">새 글 쓰기</button>
+            </c:if>
 
         <div class="top-section">
             <!-- 검색창 영역 -->
