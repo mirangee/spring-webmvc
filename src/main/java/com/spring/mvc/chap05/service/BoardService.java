@@ -8,6 +8,8 @@ import com.spring.mvc.chap05.common.Search;
 import com.spring.mvc.chap05.entity.Board;
 
 
+import com.spring.mvc.util.LoginUtils;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import com.spring.mvc.chap05.mapper.BoardMapper;
 import org.springframework.stereotype.Service;
@@ -23,8 +25,11 @@ public class BoardService {
     // mybatis가 우리가 만든 xml을 클래스로 변환해서 객체를 주입해 줌.
     private final BoardMapper mapper;
 
-    public void register(BoardWriteRequestDTO dto) {
+    public void register(BoardWriteRequestDTO dto, HttpSession session) {
         Board board = new Board(dto); // dto를 entity로 변환
+        // 이제는 화면단에서 작성자가 전달되지 않음
+        // 세션에서 현재 로그인 중인 사용자의 아이디를 얻어와서 따로 세팅
+        board.setWriter(LoginUtils.getCurrentLoginMemberAccount(session));
         mapper.save(board);
     }
 

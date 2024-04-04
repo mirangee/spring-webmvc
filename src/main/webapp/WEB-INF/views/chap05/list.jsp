@@ -103,10 +103,10 @@
                         </li>
                     </c:if>     
 
-                    <!-- preve 버튼 조작: true면 보여주기 -->
+                    <!-- prev 버튼 조작: true면 보여주기 -->
                     <c:if test="${maker.prev}">
-                        <li class="page-item"><a class="page-link" href="/board/list?pageNo=${make.begin-1}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">prev</a>
-                            <!-- bengin, end 값에서 각각 + 1, -1하면 다음 단위의 페이지 버튼이 나온다. -->
+                        <li class="page-item"><a class="page-link"
+                                                href="/board/list?pageNo=${maker.begin-1}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">prev</a>
                         </li>
                     </c:if>
                     
@@ -120,7 +120,7 @@
                     <!-- next 버튼 조작: true면 보여주기 -->
                     <c:if test="${maker.next}">
                         <li class="page-item"><a class="page-link" href="/board/list?pageNo=${maker.end+1}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">next</a> 
-                        </li>
+                        </li> <!-- bengin, end 값에서 각각 + 1, -1하면 다음 단위의 페이지 버튼이 나온다. -->
                     </c:if> 
                      
                     <c:if test="${maker.page.pageNo != maker.finalPage}">

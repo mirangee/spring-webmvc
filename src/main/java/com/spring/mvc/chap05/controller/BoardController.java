@@ -7,6 +7,7 @@ import com.spring.mvc.chap05.DTO.response.BoardListResponseDTO;
 import com.spring.mvc.chap05.common.PageMaker;
 import com.spring.mvc.chap05.common.Search;
 import com.spring.mvc.chap05.service.BoardService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,10 +52,10 @@ public class BoardController {
 
     // 3. 글쓰기 등록요청 (/board/write : POST)
     @PostMapping("/write")
-    public String write(BoardWriteRequestDTO dto) {
+    public String write(BoardWriteRequestDTO dto, HttpSession session) {
         System.out.println("/board/write: POST!!");
         System.out.println("dto = " + dto);
-        service.register(dto);
+        service.register(dto, session);
         return "redirect:/board/list";
     }
 

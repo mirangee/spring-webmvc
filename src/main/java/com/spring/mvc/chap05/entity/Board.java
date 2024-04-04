@@ -29,6 +29,5 @@ public class Board {
     public Board(BoardWriteRequestDTO dto) {
         title = dto.getTitle();
         content = dto.getContent();
-        writer = dto.getWriter();
     }
 }
