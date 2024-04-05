@@ -8,8 +8,6 @@
     <title>Insert title here</title>
 
     <%@ include file = "../include/static-head.jsp" %>
-    <!--지시자 태그로 include file 끌어오기-->
-    <link rel="stylesheet" href="/assets/css/list.css">
     <!--spring boot 프로젝트는 resources 폴더를 기준으로 파일을 찾으므로 경로를 이렇게 잡으면 된다.-->
 
 </head>
@@ -23,117 +21,122 @@
 
         <div class="main-title-wrapper">
             <h1 class="main-title">꾸러기 게시판</h1>
-            <c:if test="${login != null}"> <!--로그인 하지 않으면 새글쓰기 버튼 안 보여주기-->
+            <c:if test="${login != null}">
+                <!--로그인 하지 않으면 새글쓰기 버튼 안 보여주기-->
                 <button class="add-btn">새 글 쓰기</button>
             </c:if>
 
-        <div class="top-section">
-            <!-- 검색창 영역 -->
-            <div class="search">
-                <form action="/board/list" method="get">
+            <div class="top-section">
+                <!-- 검색창 영역 -->
+                <div class="search">
+                    <form action="/board/list" method="get">
 
-                    <select class="form-select" name="type" id="search-type">
-                        <option value="title">제목</option>
-                        <option value="content">내용</option>
-                        <option value="writer">작성자</option>
-                        <option value="tc">제목+내용</option>
-                    </select>
+                        <select class="form-select" name="type" id="search-type">
+                            <option value="title">제목</option>
+                            <option value="content">내용</option>
+                            <option value="writer">작성자</option>
+                            <option value="tc">제목+내용</option>
+                        </select>
 
-                    <input type="text" class="form-control" name="keyword" value="${s.keyword}">
+                        <input type="text" class="form-control" name="keyword" value="${s.keyword}">
 
-                    <button class="btn btn-primary" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
 
-                </form>
+                    </form>
+                </div>
+
+                <div class="amount">
+                    <div><a href="/board/list?pageNo=1&amount=6&type=${s.type}&keyword=${s.keyword}">6</a></div>
+                    <div><a href="/board/list?pageNo=1&amount=18&type=${s.type}&keyword=${s.keyword}">18</a></div>
+                    <div><a href="/board/list?pageNo=1&amount=30&type=${s.type}&keyword=${s.keyword}">30</a></div>
+                </div>
+
             </div>
 
-            <div class="amount">
-                <div><a href="/board/list?pageNo=1&amount=6&type=${s.type}&keyword=${s.keyword}">6</a></div>
-                <div><a href="/board/list?pageNo=1&amount=18&type=${s.type}&keyword=${s.keyword}">18</a></div>
-                <div><a href="/board/list?pageNo=1&amount=30&type=${s.type}&keyword=${s.keyword}">30</a></div>
-            </div>
-
-        </div>
-
-        <!--main 게시판 영역-->
-        <div class="card-container">
-            <c:forEach var="b" items="${bList}">
-                <div class="card-wrapper">
-                    <section class="card" data-bno="${b.boardNo}">
-                        <div class="card-title-wrapper">
-                            <h2 class="card-title">${b.shortTitle}</h2>
-                            <div class="time-view-wrapper">
-                                <div class="time">
-                                    <i class="far fa-clock"></i>
-                                    ${b.regDate}</div>
-                                <div class="view">
-                                    <i class="fas fa-eye"></i>
-                                    <span class="view-count">${b.viewCount}</span>
+            <!--main 게시판 영역-->
+            <div class="card-container">
+                <c:forEach var="b" items="${bList}">
+                    <div class="card-wrapper">
+                        <section class="card" data-bno="${b.boardNo}">
+                            <div class="card-title-wrapper">
+                                <h2 class="card-title">${b.shortTitle}</h2>
+                                <div class="time-view-wrapper">
+                                    <div class="time">
+                                        <i class="far fa-clock"></i>
+                                        ${b.regDate} </div>
+                                    <div class="view">
+                                        <i class="fas fa-eye"></i>
+                                        <span class="view-count">${b.viewCount}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-content">
+                            <div class="card-content">
 
-                            ${b.shortContent}
+                                ${b.shortContent}
 
-                        </div>
-                    </section>
+                            </div>
+                        </section>
 
-                    <c:if test="${login.auth == 'ADMIN' || login.account == b.writer}">
-                        <div class="card-btn-group">
-                            <button class="del-btn" data-href="/board/delete?bno=${b.boardNo}">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    </c:if>    
-                </div>
-            </c:forEach>
+                        <c:if test="${login.auth == 'ADMIN' || login.account == b.writer}">
+                            <div class="card-btn-group">
+                                <button class="del-btn" data-href="/board/delete?bno=${b.boardNo}">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </c:if>
+                    </div>
+                </c:forEach>
+            </div>
+
+            <!-- 게시글 목록 하단 영역 -->
+            <div class="bottom-section">
+
+                <!-- 페이지 버튼 영역 -->
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination pagination-lg pagination-custom">
+
+                        <!-- '<<'버튼 조작: 1페이지가 아니면 보여주기  -->
+                        <c:if test="${maker.page.pageNo != 1}">
+                            <li class="page-item"><a class="page-link"
+                                    href="/board/list?pageNo=1&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">&lt;&lt;</a>
+                            </li>
+                        </c:if>
+
+                        <!-- prev 버튼 조작: true면 보여주기 -->
+                        <c:if test="${maker.prev}">
+                            <li class="page-item"><a class="page-link"
+                                    href="/board/list?pageNo=${maker.begin-1}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">prev</a>
+                            </li>
+                        </c:if>
+
+                        <!-- 페이지 숫자 버튼: 페이지 시작, 끝 번호 만큼 반복해서 페이지 수 보여주기 ('step="1"'은 생략 가능)-->
+                        <c:forEach var="i" begin="${maker.begin}" end="${maker.end}" step="1">
+                            <li data-page-num="${i}" class="page-item">
+                                <a class="page-link"
+                                    href="/board/list?pageNo=${i}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">${i}</a>
+                            </li>
+                        </c:forEach>
+
+                        <!-- next 버튼 조작: true면 보여주기 -->
+                        <c:if test="${maker.next}">
+                            <li class="page-item"><a class="page-link"
+                                    href="/board/list?pageNo=${maker.end+1}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">next</a>
+                            </li> <!-- bengin, end 값에서 각각 + 1, -1하면 다음 단위의 페이지 버튼이 나온다. -->
+                        </c:if>
+
+                        <c:if test="${maker.page.pageNo != maker.finalPage}">
+                            <li class="page-item"><a class="page-link"
+                                    href="/board/list?pageNo=${maker.finalPage}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">&gt;&gt;</a>
+                            </li>
+                        </c:if>
+
+                    </ul>
+                </nav>
+
+            </div>
         </div>
-
-        <!-- 게시글 목록 하단 영역 -->
-        <div class="bottom-section">
-
-            <!-- 페이지 버튼 영역 -->
-            <nav aria-label="Page navigation example">
-                <ul class="pagination pagination-lg pagination-custom">
-
-                    <!-- '<<'버튼 조작: 1페이지가 아니면 보여주기  -->
-                    <c:if test="${maker.page.pageNo != 1}">
-                        <li class="page-item"><a class="page-link" href="/board/list?pageNo=1&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">&lt;&lt;</a>
-                        </li>
-                    </c:if>     
-
-                    <!-- prev 버튼 조작: true면 보여주기 -->
-                    <c:if test="${maker.prev}">
-                        <li class="page-item"><a class="page-link"
-                                                href="/board/list?pageNo=${maker.begin-1}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">prev</a>
-                        </li>
-                    </c:if>
-                    
-                    <!-- 페이지 숫자 버튼: 페이지 시작, 끝 번호 만큼 반복해서 페이지 수 보여주기 ('step="1"'은 생략 가능)-->
-                    <c:forEach var="i" begin="${maker.begin}" end="${maker.end}" step="1">
-                        <li data-page-num="${i}" class="page-item">
-                            <a class="page-link" href="/board/list?pageNo=${i}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">${i}</a>
-                        </li>
-                    </c:forEach>
-                    
-                    <!-- next 버튼 조작: true면 보여주기 -->
-                    <c:if test="${maker.next}">
-                        <li class="page-item"><a class="page-link" href="/board/list?pageNo=${maker.end+1}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">next</a> 
-                        </li> <!-- bengin, end 값에서 각각 + 1, -1하면 다음 단위의 페이지 버튼이 나온다. -->
-                    </c:if> 
-                     
-                    <c:if test="${maker.page.pageNo != maker.finalPage}">
-                        <li class="page-item"><a class="page-link" href="/board/list?pageNo=${maker.finalPage}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}">&gt;&gt;</a>
-                        </li>
-                    </c:if>
-
-                </ul>
-            </nav>
-
-        </div>
-    </div>
 
 
     </div>
@@ -192,7 +195,8 @@
                 console.log('bno: ' + bno);
 
                 // 서버에 요청 보내기
-                location.href = '/board/detail/' + bno + '?pageNo=${s.pageNo}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}';
+                location.href = '/board/detail/' + bno +
+                    '?pageNo=${s.pageNo}&amount=${s.amount}&type=${s.type}&keyword=${s.keyword}';
             }
         })
 
@@ -245,8 +249,8 @@
         if ($addWriteBtn) {
             $addWriteBtn.onclick = e => {
                 window.location.href = '/board/write';
-        };
-    }
+            };
+        }
 
         // 사용자가 현재 머물고 있는 페이지 버튼에 active 스타일 부여
         function appendPageActive() {
@@ -259,7 +263,7 @@
             const $ul = document.querySelector('.pagination');
             const $liList = [...$ul.children]; // spread 문법을 활용해 유사배열 객체를 진짜 배열로 받기
             $liList.forEach($li => {
-                if(currPage === $li.dataset.pageNum) {
+                if (currPage === $li.dataset.pageNum) {
                     $li.classList.add('active');
                 }
             })
@@ -271,17 +275,16 @@
             // 셀렉트 박스 내에 있는 option 태그들 전부 가져오기
             const $options = [...$select.children];
             $options.forEach($opt => {
-                if($opt.value === '${s.type}') {
+                if ($opt.value === '${s.type}') {
                     // option 태그 속성에 selected를 주면 그 option이 고정됨.
-                    $opt.setAttribute('selected','selected'); 
+                    $opt.setAttribute('selected', 'selected');
                 }
             })
         }
 
         // 이 페이지 렌더링되고 마지막에 이 함수 호출
-        appendPageActive(); 
+        appendPageActive();
         fixSearchOption();
-
     </script>
 
 </body>

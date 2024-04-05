@@ -26,13 +26,13 @@ public class MemberService {
     private final PasswordEncoder encoder;
 
     // 회원 가입 처리 서비스
-    public void join(SignUpRequestDTO dto) {
+    public void join(SignUpRequestDTO dto, String savePath) {
 
         // 클라이언트가 보낸 회원가입 데이터를 패스워드 인코딩하여 엔터티로 변환해서 전달
         //    String encodedPw = encoder.encode(dto.getPassword()); // 암호화해서 50자의 코드로 만들어 준다.
         //    dto.setPassword(encodedPw); // dto의 Password를 인코딩된 Password로 세팅
 
-        memberMapper.save(dto.toEntity(encoder));
+        memberMapper.save(dto.toEntity(encoder,savePath));
     }
 
     // 로그인 검증 처리

@@ -27,3 +27,6 @@
 
 <!-- side menu event js -->
 <script src="/assets/js/side-menu.js" defer></script>
+
+<!--지시자 태그로 include file 끌어오기-->
+<link rel="stylesheet" href="/assets/css/list.css">

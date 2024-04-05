@@ -26,7 +26,7 @@ class MemberServiceTest {
                 .email("hong@naver.com")
                 .build();
         // when
-        memberService.join(dto);
+        memberService.join(dto, savePath);
         // then
     }
 

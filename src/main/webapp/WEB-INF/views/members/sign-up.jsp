@@ -17,6 +17,30 @@
       margin-top: 200px;
       margin-bottom: 200px;
     }
+
+    .profile {
+      margin-bottom: 70px;
+      text-align: center;
+    }
+    .profile label {
+      font-weight: 700;
+      font-size: 1.2em;
+      cursor: pointer;
+      color: rgb(140, 217, 248);
+    }
+    .profile .thumbnail-box {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 30px auto 10px;
+      cursor: pointer;
+    }
+    .profile .thumbnail-box img {
+      width: 200px;
+      height: 200px;
+    }
+
   </style>
 </head>
 
@@ -33,8 +57,22 @@
           <div class="card-body">
 
 
-            <form action="/members/sign-up" name="signup" id="signUpForm" method="post" style="margin-bottom: 0;">
-
+            <form action="/members/sign-up" name="signup" id="signUpForm" method="post" style="margin-bottom: 0;" enctype="multipart/form-data">
+              <div class="profile">
+                <div class="thumbnail-box">
+                  <img src="/assets/img/image-add.png" alt="프로필 썸네일">
+                </div>
+  
+                <label>프로필 이미지 추가</label>
+  
+                <input
+                        type="file"
+                        id="profile-img"
+                        accept="image/*"
+                        style="display: none;"
+                        name="profileImage"
+                >
+              </div>
 
               <table style="cellpadding: 0; cellspacing: 0; margin: 0 auto; width: 100%">
                 <tr>
@@ -276,6 +314,40 @@
       } else {
         $form.submit(); // form action에 작성된 URL 대로 요청이 들어간다.
       }
+    }
+
+
+    // 프로필 사진 업로드 관련 스크립트
+    const $profile = document.querySelector('.profile');
+    const $fileInput = document.getElementById('profile-img');
+
+    // 이미지 영역을 클릭하면 input type = file을 클릭한 것과 동일한 효과를 내자.
+    $profile.onclick = e => {
+      $fileInput.click();
+    }
+
+    // 프로필 사진 첨부 시 썸네일 보여주기
+    $fileInput.onchange = e => {
+      // 사용자가 첨부한 파일 데이터 읽기
+      const fileData = $fileInput.files[0]; 
+      // $fileInput.files하면 첨부된 파일 배열이 반환된다. 배열의 첫번째 파일 지목.
+      //참고로, input태그에 "type=file multiple" 라고 작성하면 여러 파일을 업로드 할 수 있다.  
+      console.log(fileData);
+
+      // 첨부파일의 바이트데이터를 읽어들이는 객체 생성(자바스크립트 기본 제공 객체)
+      const reader = new FileReader(); 
+
+      // 첨부된 파일의 바이트데이터를 읽어서 img 태그의 src 속성에 URL 형태로 넣어야 한다. 
+      // URL 형태로 읽어주는 함수를 사용한다.
+      reader.readAsDataURL(fileData);
+
+      // 파일 리더 객체가 로딩이 끝났다면 이벤트를 발생시켜서
+      // img 태그에 이미지를 세팅
+      reader.onloadend = e => {
+          const $img = document.querySelector('.thumbnail-box img');
+          $img.setAttribute('src', reader.result); // src에 reader의 결과를 세팅
+      }
+
     }
   </script>
 

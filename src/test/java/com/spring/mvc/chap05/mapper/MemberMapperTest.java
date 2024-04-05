@@ -1,6 +1,5 @@
 package com.spring.mvc.chap05.mapper;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.spring.mvc.chap05.entity.Member;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
