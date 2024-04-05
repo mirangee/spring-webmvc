@@ -8,6 +8,8 @@ import com.spring.mvc.chap05.common.PageMaker;
 import com.spring.mvc.chap05.DTO.request.ReplyPostRequestDTO;
 import com.spring.mvc.chap05.entity.Reply;
 import com.spring.mvc.chap05.mapper.ReplyMapper;
+import com.spring.mvc.util.LoginUtils;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +23,13 @@ public class ReplyService {
     private final ReplyMapper mapper;
 
 
-    public void register(ReplyPostRequestDTO dto) {
+    public void register(ReplyPostRequestDTO dto, HttpSession session) {
 
         // dto를 entity로 변환.
         Reply reply = dto.toEntity();
+
+        // 세션 데이터에서 현재 로그인 중인 사용자의 아이디를 따로 세팅
+        reply.setAccount(LoginUtils.getCurrentLoginMemberAccount(session));
 
         mapper.save(reply);
 

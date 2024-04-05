@@ -174,35 +174,39 @@
                 <!-- 댓글 쓰기 영역 -->
                 <div class="card">
                     <div class="card-body">
-
-                        <div class="row">
-                            <div class="col-md-9">
-                                <div class="form-group">
-                                    <label for="newReplyText" hidden>댓글 내용</label>
-                                    <textarea rows="3" id="newReplyText" name="replyText" class="form-control"
-                                        placeholder="댓글을 입력해주세요."></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-
-
-                                    <div class="profile-box">
-
-                                        <img src="/assets/img/anonymous.jpg" alt="프사">
-
+                        <c:if test="${sessionScope.login == null}">
+                            <a href="/members/sign-in"> 댓글은 로그인 후에 작성할 수 있습니다!</a>
+                        </c:if>
+                        <c:if test="${sessionScope.login != null}">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <label for="newReplyText" hidden>댓글 내용</label>
+                                        <textarea rows="3" id="newReplyText" name="replyText" class="form-control"
+                                            placeholder="댓글을 입력해주세요."></textarea>
                                     </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
 
 
-                                    <label for="newReplyWriter" hidden>댓글 작성자</label>
-                                    <input id="newReplyWriter" name="replyWriter" type="text" class="form-control"
-                                        placeholder="작성자 이름" style="margin-bottom: 6px;">
-                                    <button id="replyAddBtn" type="button" class="btn btn-dark form-control">등록
-                                    </button>
+                                        <div class="profile-box">
+
+                                            <img src="/assets/img/anonymous.jpg" alt="프사">
+
+                                        </div>
+
+
+                                        <label for="newReplyWriter" hidden>댓글 작성자</label>
+                                        <input id="newReplyWriter" name="replyWriter" type="text" class="form-control"
+                                            placeholder="작성자 이름" style="margin-bottom: 6px;" value="${login.name}"
+                                            readonly>
+                                        <button id="replyAddBtn" type="button" class="btn btn-dark form-control">등록
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
+                        </c:if>
                     </div>
                 </div> <!-- end reply write -->
 
@@ -271,22 +275,31 @@
     <script>
         const URL = '/api/v1/replies'; // 댓글과 관련된 요청 url을 전역변수화.
         const bno = '${b.boardNo}'; // 게시글 번호를 전역변수화.
+        const currentAccount = '${login.account}'; // 로그인한 사람 계정
+        const auth = '${login.auth}'; // 로그인한 사람 권한
 
         // 화면에 페이지 버튼들을 렌더링하는 함수
         // 매개변수 선언부에 바로 디스트럭처링해서 받을 수 있다.
-        function renderPage({begin, end, prev, next, page, finalPage}) { 
+        function renderPage({
+            begin,
+            end,
+            prev,
+            next,
+            page,
+            finalPage
+        }) {
             let tag = '';
 
             // 이전 버튼 만들기
             if (prev) {
-                tag += `<li class='page-item'><a class='page-link page-active' href='\${begin - 1}'>이전</a></li>`; 
+                tag += `<li class='page-item'><a class='page-link page-active' href='\${begin - 1}'>이전</a></li>`;
             }
 
 
             // 페이지 번호 버튼 리스트 만들기
-            for(let i = begin; i <= end; i++) {
+            for (let i = begin; i <= end; i++) {
                 let active = '';
-                if(page.pageNo == i) { // 사용자가 선택한 페이지 번호와 현재 페이지 번호가 같다면
+                if (page.pageNo == i) { // 사용자가 선택한 페이지 번호와 현재 페이지 번호가 같다면
                     active = 'p-active'; // 색칠 넣기
                 }
                 tag += `<li class='page-item \${active}'><a class='page-link page-custom' href='\${i}'>\${i}</a></li>`;
@@ -304,17 +317,28 @@
         }
 
         // 화면에 댓글 태그들을 렌더링하는 함수
-        function renderReplies(replyList) {  // 댓글 페이징 적용하면 replyList 객체에 count, pageInfo, replies가 담겨 있음
-            
+        function renderReplies(replyList) { // 댓글 페이징 적용하면 replyList 객체에 count, pageInfo, replies가 담겨 있음
+
             // 객체 디스트럭처링(댓글 수, 페이지메이커, 댓글목록으로 분해)
-            const {count, pageInfo, replies} = replyList; 
+            const {
+                count,
+                pageInfo,
+                replies
+            } = replyList;
 
             let tag = '';
             if (replies !== null && replies.length > 0) {
 
                 for (let reply of replies) { // 자바에서 디자인한 ReplyDetailResponseDTO가 여기로 옴
                     // 객체 디스트럭처링(구조분해할당)
-                    const {rno, writer, text, regDate, updateDate} = reply;
+                    const {
+                        rno,
+                        writer,
+                        text,
+                        regDate,
+                        updateDate,
+                        account
+                    } = reply;
 
                     tag += `
                         <div id='replyContent' class='card-body' data-replyId='\${rno}'>
@@ -330,11 +354,13 @@
                             <div class='col-md-9'>\${text}</div>
                             <div class='col-md-3 text-right'>
                     `;
-
+                    
+                    if (auth === 'ADMIN' || currentAccount === account) {
                     tag += `
                         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;
                         <a id='replyDelBtn' class='btn btn-sm btn-outline-dark' href='#'>삭제</a>
                     `;
+                    }
 
                     tag += `   </div>
                             </div>
@@ -356,7 +382,7 @@
         }
 
         // 서버에 실시간으로 비동기통신을 해서 JSON을 받아오는 함수
-        function fetchGetReplies(pageNum = 1) {  // 댓글 목록 요청 시 페이지 번호가 전달(전달되지 않으면 기본값 1)
+        function fetchGetReplies(pageNum = 1) { // 댓글 목록 요청 시 페이지 번호가 전달(전달되지 않으면 기본값 1)
             // fetch 함수를 통해 비동기통신 진행할 때 GET요청은 요청에 관련한 객체를 따로 전달하지 않습니다.
             // method를 get이라고 얘기하지 않고, 데이터 전달 시에는 URL에 포함시켜서 전달.
             // 자바스크립트 문자열 안에 '달러와 중괄호'를 쓰면 el로 인식, 템플릿 리터럴 문자를 쓰고 싶으면 앞에 /를 넣어 주세요.
@@ -372,14 +398,14 @@
                 })
         }
 
-        
+
 
         // 페이지 클릭 이벤트 핸들러 등록 함수
         function makePageButtonClickHandler() {
             const $pageUl = document.querySelector('.pagination');
             $pageUl.onclick = e => {
                 // 이벤트 타깃이 a태그(페이지 버튼)가 아니면 href 속성을 가져오지 못하니 타깃 제한
-                if(!e.target.matches('.page-item > a')) return;
+                if (!e.target.matches('.page-item > a')) return;
 
                 e.preventDefault(); // a태그의 링크이동 기능 중단
 
@@ -392,75 +418,77 @@
         // 댓글 등록 부분
         const $addBtn = document.getElementById('replyAddBtn');
 
-        $addBtn.onclick = e => {
+        if ($addBtn) {
+            $addBtn.onclick = e => {
 
-            const $replyText = document.getElementById('newReplyText'); // 댓글 내용
-            const $replyWriter = document.getElementById('newReplyWriter'); // 댓글 작성자
+                const $replyText = document.getElementById('newReplyText'); // 댓글 내용
+                const $replyWriter = document.getElementById('newReplyWriter'); // 댓글 작성자
 
-            // 공백이 제거된 값을 얻음.
-            const textVal = $replyText.value.trim();
-            const writerVal = $replyWriter.value.trim();
+                // 공백이 제거된 값을 얻음.
+                const textVal = $replyText.value.trim();
+                const writerVal = $replyWriter.value.trim();
 
-            // 사용자 입력값 검증
-            if (textVal === '') {
-                alert('댓글 내용은 필수값입니다!!');
-                return;
-            } else if (writerVal === '') {
-                alert('댓글 작성자는 필수값입니다!!');
-                return;
-            } else if (writerVal.length < 2 || writerVal.length > 8) {
-                alert('댓글 작성자는 2글자에서 8글자 사이로 작성하세요!');
-                return;
+                // 사용자 입력값 검증
+                if (textVal === '') {
+                    alert('댓글 내용은 필수값입니다!!');
+                    return;
+                } else if (writerVal === '') {
+                    alert('댓글 작성자는 필수값입니다!!');
+                    return;
+                } else if (writerVal.length < 2 || writerVal.length > 8) {
+                    alert('댓글 작성자는 2글자에서 8글자 사이로 작성하세요!');
+                    return;
+                }
+
+                // 서버로 보낼 데이터 준비. (js 객체)
+                const payload = {
+                    text: textVal,
+                    author: writerVal,
+                    bno: bno
+                };
+
+                // 요청 방식 및 데이터를 전달할 정보 객체 만들기 (POST)
+                const requestInfo = {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(payload) // js 객체를 JSON으로 변환해서 body에 추가
+                }
+
+                // 서버에 POST 요청 보내기
+                fetch(URL, requestInfo)
+                    // then(callbackFn) -> 비동기 통신의 결과를 확인하기 위해 then과 콜백함수 전달
+                    // 콜백함수의 매개변수로 응답정보가 담긴 Response 객체가 전달되고,
+                    // Response 객체에서 json 데이터를 꺼내고 싶으면 json(), 단순 텍스트라면 text().
+                    .then(res => {
+                        console.log(res.status); // 서버에서 전달한 응답 상태 코드
+                        if (res.status === 200) {
+                            alert('댓글이 정상 등록되었습니다.');
+                            return res.text(); // Promise 객체가 반환됨
+                        } else {
+                            alert('입력값에 문제가 있습니다! 입력값을 다시 확인해 보세요!');
+                            return res.text();
+                        }
+                    })
+                    .then(data => { // Promise 객체의 내용 꺼내기
+                        console.log('응답 성공! ', data);
+                        // 댓글 작성자 input과 댓글 내용 text를 지워주자.
+                        $replyText.value = '';
+                        // $replyWriter.value = ''; 로그인한 회원 이름이 계속 남아있도록 주석처리
+
+                        // 댓글 목록 비동기 요청이 들어가야 한다.
+                        // 따로 함수로 빼 주겠습니다.
+                        // (등록 이후 뿐만 아니라 게시글 상세보기에 처음 들어왔을 때도 호출되어야 하니까)
+                        fetchGetReplies();
+                    });
             }
-
-            // 서버로 보낼 데이터 준비. (js 객체)
-            const payload = {
-                text: textVal,
-                author: writerVal,
-                bno: bno
-            };
-
-            // 요청 방식 및 데이터를 전달할 정보 객체 만들기 (POST)
-            const requestInfo = {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(payload) // js 객체를 JSON으로 변환해서 body에 추가
-            }
-
-            // 서버에 POST 요청 보내기
-            fetch(URL, requestInfo)
-                // then(callbackFn) -> 비동기 통신의 결과를 확인하기 위해 then과 콜백함수 전달
-                // 콜백함수의 매개변수로 응답정보가 담긴 Response 객체가 전달되고,
-                // Response 객체에서 json 데이터를 꺼내고 싶으면 json(), 단순 텍스트라면 text().
-                .then(res => {
-                    console.log(res.status); // 서버에서 전달한 응답 상태 코드
-                    if (res.status === 200) {
-                        alert('댓글이 정상 등록되었습니다.');
-                        return res.text(); // Promise 객체가 반환됨
-                    } else {
-                        alert('입력값에 문제가 있습니다! 입력값을 다시 확인해 보세요!');
-                        return res.text();
-                    }
-                })
-                .then(data => { // Promise 객체의 내용 꺼내기
-                    console.log('응답 성공! ', data);
-                    // 댓글 작성자 input과 댓글 내용 text를 지워주자.
-                    $replyText.value = '';
-                    $replyWriter.value = '';
-
-                    // 댓글 목록 비동기 요청이 들어가야 한다.
-                    // 따로 함수로 빼 주겠습니다.
-                    // (등록 이후 뿐만 아니라 게시글 상세보기에 처음 들어왔을 때도 호출되어야 하니까)
-                    fetchGetReplies();
-                });
         }
 
         // 댓글 삭제 + 수정 모드 진입 이벤트 핸들러 등록 및 처리 함수
         function makeReplyRemoveClickHandler() {
             // 댓글 목록 전체를 감싸고 있는 영역 취득
-            const $replyData = document.getElementById('replyData'); 
+            const $replyData = document.getElementById('replyData');
 
             $replyData.onclick = e => {
                 e.preventDefault(); //a태그의 링크이동 기능 중지
@@ -480,21 +508,21 @@
                         삭제 완료 후에는 1페이지 댓글 목록 요청이 들어가도록 처리.
                     */
 
-                    if(!confirm('정말 삭제하시겠습니까?')) return;
-                    
-                    fetch(`\${URL}/\${rno}`,{
-                        method: 'DELETE'
-                    })
-                    .then(res => {
-                        if (res.status === 200) {
-                            alert('댓글이 삭제 되었습니다');
-                            fetchGetReplies(); // 삭제 완료 후 1페이지 댓글 목록 요청이 들어가게 처리
-                        } else {
-                            alert('오류가 발생했습니다. 관리자에게 문의하세요.');
-                            return;
-                        }
-                    });
-                    
+                    if (!confirm('정말 삭제하시겠습니까?')) return;
+
+                    fetch(`\${URL}/\${rno}`, {
+                            method: 'DELETE'
+                        })
+                        .then(res => {
+                            if (res.status === 200) {
+                                alert('댓글이 삭제 되었습니다');
+                                fetchGetReplies(); // 삭제 완료 후 1페이지 댓글 목록 요청이 들어가게 처리
+                            } else {
+                                alert('오류가 발생했습니다. 관리자에게 문의하세요.');
+                                return;
+                            }
+                        });
+
 
 
                 } else if (e.target.matches('#replyModBtn')) {
@@ -535,7 +563,7 @@
 
                 fetch(URL, requestInfo)
                     .then(res => {
-                        if(res.status === 200) {
+                        if (res.status === 200) {
                             alert('댓글이 수정되었습니다');
                             // 모달 창 닫기
                             document.getElementById('modal-close').click();
@@ -552,7 +580,7 @@
                     })
 
 
-            }); 
+            });
         }
 
         // =================메인 실행부==================
