@@ -8,11 +8,13 @@ import com.spring.mvc.chap05.entity.Member;
 import com.spring.mvc.chap05.mapper.MemberMapper;
 import com.spring.mvc.util.LoginUtils;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.WebUtils;
 
 import java.time.LocalDateTime;
 
@@ -31,7 +33,6 @@ public class MemberService {
         //    dto.setPassword(encodedPw); // dto의 Password를 인코딩된 Password로 세팅
 
         memberMapper.save(dto.toEntity(encoder));
-
     }
 
     // 로그인 검증 처리
@@ -64,7 +65,7 @@ public class MemberService {
             Cookie autoLoginCookie = new Cookie(LoginUtils.AUTO_LOGIN_COOKIE, session.getId());
 
             // 2. 쿠키 설정 - 사용 경로, 수명...
-            int limitTime = 60*60*24*90; // 자동로그인 유지 시간
+            int limitTime = 60*60*24*90; // 자동로그인 유지 시간(90일)
             autoLoginCookie.setPath("/");
             autoLoginCookie.setMaxAge(limitTime);
 
@@ -103,7 +104,7 @@ public class MemberService {
         // 현재 로그인한 회원의 모든 정보 조회
         Member foundMember = memberMapper.findMember(account);
 
-        //DB데이터를 보여줄 것만 정제
+        //DB 데이터 중에서 세선에 저장할 데이터만 정제
         LoginUserResponseDTO dto = LoginUserResponseDTO.builder()
                                     .account(foundMember.getAccount())
                                     .name(foundMember.getName())
@@ -113,8 +114,29 @@ public class MemberService {
 
         // 세션에 로그인한 회원 정보를 저장
         session.setAttribute(LoginUtils.LOGIN_KEY, dto);
-        // 세션 수명 설정
-        session.setMaxInactiveInterval(60*60); // 1시간 
 
+        // 세션 수명 설정
+        session.setMaxInactiveInterval(60*60); // 1시간
+    }
+
+    public void autoLoginClear(HttpServletRequest request, HttpServletResponse response) {
+        // 1. 자동 로그인 쿠키를 가져온다.
+        Cookie c = WebUtils.getCookie(request, LoginUtils.AUTO_LOGIN_COOKIE);
+
+        // 2. 쿠키를 삭제한다. 쿠키를 삭제하는 메서드는 없으므로 쿠키 수명을 0으로 만들어 삭제한다.
+        if (c != null) {
+            c.setMaxAge(0);
+            c.setPath("/");
+            response.addCookie(c); // 다시 응답 객체에 태워서 보낸다.
+
+            // 3. 데이터베이스에서도 세션 아이디와 만료 시간을 제거한다.
+            memberMapper.saveAutoLogin(
+                    AutoLoginDTO.builder()
+                            .sessionId("none") // 세션 아이디 지우기
+                            .limitTime(LocalDateTime.now()) // 로그아웃한 현재 날짜
+                            .account(LoginUtils.getCurrentLoginMemberAccount(request.getSession())) // 로그인 중이었던 사용자 ID 가져오기
+                            .build()
+            );
+        }
     }
 }

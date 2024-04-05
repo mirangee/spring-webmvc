@@ -4,6 +4,7 @@ import com.spring.mvc.chap05.DTO.request.LoginRequestDTO;
 import com.spring.mvc.chap05.DTO.request.SignUpRequestDTO;
 import com.spring.mvc.chap05.service.LoginResult;
 import com.spring.mvc.chap05.service.MemberService;
+import com.spring.mvc.util.LoginUtils;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -95,8 +96,17 @@ public class MemberController {
 
     // 로그아웃 요청 처리
     @GetMapping("/sign-out")
-    public String signOut(HttpSession session) {
+    public String signOut(HttpSession session,
+                          HttpServletRequest request,
+                          HttpServletResponse response) {
         log.info("members/sign-out: Get");
+
+        // 자동 로그인 중인 사람이 로그아웃을 요청하는 경우
+        // 자동 로그인 중인지 확인
+        if (LoginUtils.isAutoLogin(request)) {
+            // 쿠키를 삭제해주고 DB 데이터도 원래대로 돌려놓아야 한다.
+            memberService.autoLoginClear(request, response);
+        }
 
         // 로그아웃 처리 2가지 방법
         // 로그인 정보 외에 다른 정보도 세션에 포함하고 있다면 1번 사용
