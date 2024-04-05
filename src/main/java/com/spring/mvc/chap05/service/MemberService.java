@@ -110,6 +110,7 @@ public class MemberService {
                                     .name(foundMember.getName())
                                     .email(foundMember.getEmail())
                                     .auth(foundMember.getAuth())
+                                    .profile(foundMember.getProfileImage())
                                     .build();
 
         // 세션에 로그인한 회원 정보를 저장

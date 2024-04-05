@@ -12,9 +12,13 @@
 
         <!-- 프로필 사진 -->
         <div class="profile-box">
-
+            <c:if test="${login == null || login.profile == null}">
                 <img src="/assets/img/anonymous.jpg" alt="프사">
-            
+            </c:if>
+
+            <c:if test="${login != null && login.profile != null}">
+                <img src="/display${login.profile}" alt="profile picture">
+            </c:if>
         </div>
 
 
@@ -53,3 +57,10 @@
 
 </header>
 <!-- //header -->
+
+<script>
+    const $profileBox = document.querySelector('.profile-box');
+    $profileBox.onclick = e => {
+        location.href='/display/download${login.profile}';        
+    };
+</script>

@@ -191,9 +191,12 @@
 
 
                                         <div class="profile-box">
-
-                                            <img src="/assets/img/anonymous.jpg" alt="프사">
-
+                                            <c:if test="${login.profile == null}">
+                                                <img src="/assets/img/anonymous.jpg" alt="프사">
+                                            </c:if>
+                                            <c:if test="${login.profile != null}">
+                                                <img src="/display${login.profile}" alt="profile picture">
+                                            </c:if>
                                         </div>
 
 
@@ -354,9 +357,9 @@
                             <div class='col-md-9'>\${text}</div>
                             <div class='col-md-3 text-right'>
                     `;
-                    
+
                     if (auth === 'ADMIN' || currentAccount === account) {
-                    tag += `
+                        tag += `
                         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;
                         <a id='replyDelBtn' class='btn btn-sm btn-outline-dark' href='#'>삭제</a>
                     `;
