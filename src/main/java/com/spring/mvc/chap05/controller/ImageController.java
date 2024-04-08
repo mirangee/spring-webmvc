@@ -81,7 +81,7 @@ public class ImageController {
         ResponseEntity<byte[]> result = null;
         HttpHeaders headers = new HttpHeaders(); // 응답 헤더 객체 생성
         //응답하는 본문을 브라우저가 어떻게 표시해야 할지 알려주는 헤더 정보를 추가합니다.
-        //inline인 경우 웹 페이지 화면에 표시되고, attachment인 경우 다운로드를 제공합니다.
+        //기본값인 inline인 경우 웹 페이지 화면에 표시되고, attachment인 경우 다운로드를 제공합니다.
 
         //request객체의 getHeader("User-Agent") -> 단어를 뽑아서 확인
         //ie: Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko

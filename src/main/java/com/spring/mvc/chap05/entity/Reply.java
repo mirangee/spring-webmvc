@@ -30,4 +30,5 @@ public class Reply {
     private LocalDateTime updateDate;
     @Setter
     private String account;
+    private String profileImage;
 }
