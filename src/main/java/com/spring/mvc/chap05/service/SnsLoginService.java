@@ -1,11 +1,11 @@
 package com.spring.mvc.chap05.service;
 
-import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
+import com.spring.mvc.chap05.DTO.request.SignUpRequestDTO;
+import com.spring.mvc.chap05.DTO.response.KakaoUserResponseDTO;
+import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -15,40 +15,67 @@ import java.util.Map;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class SnsLoginService {
-    private final ParameterNamesModule parameterNamesModule;
 
-    public SnsLoginService(ParameterNamesModule parameterNamesModule) {
-        this.parameterNamesModule = parameterNamesModule;
+    private final MemberService memberService;
+
+    // 카카오 로그인 처리
+    public void kakaoLogin(Map<String, String> params, HttpSession session) {
+
+        String accessToken = getKakaoAccessToken(params);
+        log.info("access_token: {}", accessToken);
+
+        // 전달받은 액세스 토큰을 활용하여 사용자 정보를 가져오기.
+        KakaoUserResponseDTO dto = getKakaoUserInfo(accessToken);
+        
+        // 카카오에서 받은 회원 정보로 우리 사이트 회원가입
+        String email = dto.getAccount().getEmail();
+        log.info("이메일: {}", email);
+        
+        // 회원 중복확인(memberService 객체 주입 받음)
+        if (!memberService.checkDuplicateValue(email, email)) { // 카카오 로그인을 처음하는 사람이라면
+            // 한번도 카카오 로그인을 한 적이 없다면 회원가입이 들어간다.
+            memberService.join(
+                    SignUpRequestDTO.builder()
+                            .account(String.valueOf(dto.getId()))
+                            .password("0000") // 카카오는 비번이 중요하지 않으므로 0000으로 설정
+                            .name(dto.getProperties().getNickname())
+                            .email(email)
+                            .build(),
+                    dto.getProperties().getProfileImage()
+            );
+        }
+
+        // 우리 사이트 로그인 처리
+        memberService.maintainLoginState(session, String.valueOf(dto.getId()));
+
     }
 
-    public void kakaoLogin(Map<String, String> params) {
-        getKakaoAccessToken(params);
 
-    }
+    // 토큰 발급 요청
+    private String getKakaoAccessToken(Map<String, String> requestParam) {
 
-    private void getKakaoAccessToken(Map<String, String> requestParam) {
-        // API 문서 보면서 하면 된다.
         // 요청 URI
         String requestUri = "https://kauth.kakao.com/oauth/token";
 
         // 요청 헤더 설정
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+        headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
         // 요청 바디에 파라미터 세팅
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "authorization_code");
         params.add("client_id", requestParam.get("appKey"));
         params.add("redirect_uri", requestParam.get("redirect"));
         params.add("code", requestParam.get("code"));
 
-        // 카카오 인증 서버로 POST 요청 날리기
-        // 서버에서 비동기 요청을 보낼 수 있음
+        // 카카오 인증서버로 POST 요청 날리기
+        // 서버에서 비동기 방식으로 요청 날릴 수 있게 해주는 객체
         RestTemplate template = new RestTemplate();
 
-        // 헤더 정보와 파라미터를 하나로 묶기
-        HttpEntity<Object> requestEntity = new HttpEntity<Object>(params, headers);
+        // 헤더 정보와 파라미터를 하나로 묶기.
+        HttpEntity<Object> requestEntity = new HttpEntity<>(params, headers);
 
         /*
             - RestTemplate객체가 REST API 통신을 위한 API인데 (자바스크립트 fetch역할)
@@ -58,11 +85,44 @@ public class SnsLoginService {
             param3: 요청 헤더와 요청 바디 정보 - HttpEntity로 포장해서 줘야 함
             param4: 응답결과(JSON)를 어떤 타입으로 받아낼 것인지 (ex: DTO로 받을건지 Map으로 받을건지)
          */
-
         ResponseEntity<Map> responseEntity
                 = template.exchange(requestUri, HttpMethod.POST, requestEntity, Map.class);
 
-        // 응답 데이터에서 JSON 추출
+        // 응답 데이터(responseEntity로 응답이 들어옴)에서 JSON 추출
+        Map<String, Object> responseJSON = (Map<String, Object>) responseEntity.getBody();
+        log.info("응답 JSON 데이터: {}", responseJSON);
 
+        // access token 추출 (카카오 로그인 중인 사용자의 정보를 요청할 때 필요한 토큰)
+        String accessToken = (String) responseJSON.get("access_token");
+
+        return accessToken;
+    }
+
+    // 전달받은 액세스 토큰을 활용하여 사용자 정보를 가져오기.
+    private KakaoUserResponseDTO getKakaoUserInfo(String accessToken) {
+        // 요청 URI
+        String requestUri = "https://kapi.kakao.com/v2/user/me";
+
+        // 요청 헤더
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer " + accessToken);
+        headers.add("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+
+        // 이번엔 필수 파라미터가 없어서 따로 안 만듦
+
+        // 요청 보내기
+        RestTemplate template = new RestTemplate();
+        ResponseEntity<KakaoUserResponseDTO> responseEntity = template.exchange(
+                requestUri,
+                HttpMethod.POST,
+                new HttpEntity<>(headers),
+                KakaoUserResponseDTO.class
+        );
+
+        // 응답 데이터(responseEntity로 응답이 들어옴)에서 JSON 추출, 이번에는 DTO로 받는다.
+        KakaoUserResponseDTO responseJSON = responseEntity.getBody();
+        log.info("response: {}", responseJSON);
+
+        return responseJSON;
     }
 }
