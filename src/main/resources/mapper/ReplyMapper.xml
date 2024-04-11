@@ -31,7 +31,7 @@
     <!-- service에서 2개 이상의 매개변수가 전달되는 경우 설정한 별칭으로 호출한다.    -->
     <select id="findAll" resultType="reply">
         SELECT
-            A.*, B.profile_image
+            A.*, B.profile_image, B.login_method
         FROM tbl_reply A
         LEFT OUTER JOIN tbl_member B
         ON A.account = B.account

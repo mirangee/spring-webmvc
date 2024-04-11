@@ -2,6 +2,7 @@ package com.spring.mvc.chap05.service;
 
 import com.spring.mvc.chap05.DTO.request.SignUpRequestDTO;
 import com.spring.mvc.chap05.DTO.response.KakaoUserResponseDTO;
+import com.spring.mvc.chap05.entity.Member;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +43,7 @@ public class SnsLoginService {
                             .password("0000") // 카카오는 비번이 중요하지 않으므로 0000으로 설정
                             .name(dto.getProperties().getNickname())
                             .email(email)
+                            .loginMethod(Member.LoginMethod.KAKAO)
                             .build(),
                     dto.getProperties().getProfileImage()
             );

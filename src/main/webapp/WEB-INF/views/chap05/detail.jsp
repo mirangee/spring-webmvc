@@ -194,8 +194,15 @@
                                             <c:if test="${login.profile == null}">
                                                 <img src="/assets/img/anonymous.jpg" alt="프사">
                                             </c:if>
-                                            <c:if test="${login.profile != null}">
-                                                <img src="/display${login.profile}" alt="profile picture">
+                                            <c:if test="${login != null && login.profile != null}">
+                                                <c:choose>
+                                                    <c:when test="${login.loginMethod == 'COMMON'}">
+                                                        <img src="/display${login.profile}" alt="프사">
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <img src="${login.profile}" alt="프사">
+                                                    </c:otherwise>
+                                                </c:choose>
                                             </c:if>
                                         </div>
 
@@ -281,6 +288,7 @@
         const currentAccount = '${login.account}'; // 로그인한 사람 계정
         const auth = '${login.auth}'; // 로그인한 사람 권한
 
+
         // 화면에 페이지 버튼들을 렌더링하는 함수
         // 매개변수 선언부에 바로 디스트럭처링해서 받을 수 있다.
         function renderPage({
@@ -341,7 +349,8 @@
                         regDate,
                         updateDate,
                         account,
-                        profile
+                        profile,
+                        loginMethod
                     } = reply;
 
                     tag += `
@@ -350,8 +359,19 @@
                                 <span class='col-md-8'>
                     `;
 
-                    tag += (profile ? `<img class= 'reply-profile' src = '/local\${profile}' alt="profile image">`
-                            : `<img class= 'reply-profile' src = '/assets/img/anonymous.jpg' alt="anonymous image">`);
+
+                    let profileTag = '';
+                    if (profile) {
+                        if (loginMethod.trim() === 'COMMON') {
+                            profileTag = `<img class='reply-profile' src='/local\${profile}' alt='profile image' >`;
+                        } else {
+                            profileTag = `<img class='reply-profile' src='\${profile}' alt='profile image' >`;
+                        }
+                    } else {
+                        profileTag = `<img class='reply-profile' src='/assets/img/anonymous.jpg' alt='anonymous image' >`;
+                    }
+
+                    tag += profileTag;
 
                     tag += `<b>\${writer}</b>
                             </span>
