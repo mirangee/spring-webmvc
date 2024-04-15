@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.WebUtils;
@@ -20,6 +21,7 @@ import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class MemberService {
 
     private final MemberMapper memberMapper;
@@ -103,7 +105,8 @@ public class MemberService {
 
         // 현재 로그인한 회원의 모든 정보 조회
         Member foundMember = memberMapper.findMember(account);
-
+        log.info("memberService-현재 로그인한 회원의 정보를 조회 중");
+        
         //DB 데이터 중에서 세선에 저장할 데이터만 정제
         LoginUserResponseDTO dto = LoginUserResponseDTO.builder()
                                     .account(foundMember.getAccount())
@@ -140,5 +143,9 @@ public class MemberService {
                             .build()
             );
         }
+    }
+
+    public void kakaoLogout(LoginUserResponseDTO dto) {
+
     }
 }

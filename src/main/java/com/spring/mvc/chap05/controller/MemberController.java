@@ -2,10 +2,12 @@ package com.spring.mvc.chap05.controller;
 
 import com.spring.mvc.chap05.DTO.request.LoginRequestDTO;
 import com.spring.mvc.chap05.DTO.request.SignUpRequestDTO;
+import com.spring.mvc.chap05.DTO.response.LoginUserResponseDTO;
 import com.spring.mvc.chap05.entity.Member;
 import com.spring.mvc.chap05.service.LoginResult;
 import com.spring.mvc.chap05.service.MemberService;
 import com.spring.mvc.util.LoginUtils;
+import com.spring.mvc.util.MailSenderService;
 import com.spring.mvc.util.upload.FileUtils;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,6 +21,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import static com.spring.mvc.util.LoginUtils.LOGIN_KEY;
+
 @Controller
 @RequestMapping("/members")
 @RequiredArgsConstructor
@@ -30,6 +34,7 @@ public class MemberController {
     private String rootPath;
 
     private final MemberService memberService;
+    private final MailSenderService mailSenderService;
 
     // 회원가입 양식 화면 요청
     // 응답하고자 하는 화면의 경로가 URL과 동일하다면 void로 처리할 수 있다. (선택사항)
@@ -125,6 +130,12 @@ public class MemberController {
             memberService.autoLoginClear(request, response);
         }
 
+        // sns 로그인 상태인지 확인
+        LoginUserResponseDTO dto = (LoginUserResponseDTO) session.getAttribute(LOGIN_KEY);
+        if(dto.getLoginMethod().equals("KAKAO")) {
+            memberService.kakaoLogout(dto);
+        }
+
         // 로그아웃 처리 2가지 방법
         // 로그인 정보 외에 다른 정보도 세션에 포함하고 있다면 1번 사용
         // 세션 모든 정보를 초기화해도 된다면 2번 사용
@@ -135,5 +146,26 @@ public class MemberController {
         session.invalidate();
 
         return "redirect:/board/list";
+    }
+
+    // 연습용 이메일 폼 화면
+    @GetMapping("/email")
+    public String emailForm() {
+        return "email/email-form";
+    }
+
+
+    // 이메일 인증
+    @PostMapping("/email")
+    @ResponseBody
+    public ResponseEntity<?> mailCheck(@RequestBody String email) {
+        log.info("이메일 인증 요청 들어옴!: {}", email);
+        try {
+            String authNum = mailSenderService.joinEmail(email);
+            return ResponseEntity.ok().body(authNum);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body("이메일 전송 과정에서 에러 발생!");
+        }
     }
 }

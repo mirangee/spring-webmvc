@@ -33,20 +33,21 @@ public class SnsLoginService {
         // 카카오에서 받은 회원 정보로 우리 사이트 회원가입
         String email = dto.getAccount().getEmail();
         log.info("이메일: {}", email);
-        
-        // 회원 중복확인(memberService 객체 주입 받음)
-        if (!memberService.checkDuplicateValue(email, email)) { // 카카오 로그인을 처음하는 사람이라면
+
+        // 회원 중복확인 (이메일)
+        if (!memberService.checkDuplicateValue("email", email)) {
             // 한번도 카카오 로그인을 한 적이 없다면 회원가입이 들어간다.
             memberService.join(
                     SignUpRequestDTO.builder()
                             .account(String.valueOf(dto.getId()))
-                            .password("0000") // 카카오는 비번이 중요하지 않으므로 0000으로 설정
+                            .password("0000")
                             .name(dto.getProperties().getNickname())
                             .email(email)
                             .loginMethod(Member.LoginMethod.KAKAO)
                             .build(),
                     dto.getProperties().getProfileImage()
             );
+            log.info("한번도 로그인한 적 없어서 회원가입 진행합니다.");
         }
 
         // 우리 사이트 로그인 처리

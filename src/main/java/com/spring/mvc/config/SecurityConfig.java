@@ -26,6 +26,8 @@ public class SecurityConfig {
         return http.build();
     }
 
+
+
     // 비밀번호 암호화 객체를 빈 등록
     @Bean
     public PasswordEncoder encoder() {
